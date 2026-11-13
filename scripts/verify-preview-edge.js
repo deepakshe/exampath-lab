@@ -93,7 +93,8 @@ async function run() {
       } else {
         console.log(`  - Custom branded 404 in Preview: SKIPPED (Upstream Cloudflare issue: cloudflare/developer-platform#118)`);
         console.log(`    ↳ Preview returned edge fallback: '${unknown.body.trim()}' (9 bytes)`);
-        console.log(`    ↳ Verified: Local workerd honours custom 404; production honours it post-merge.`);
+        console.log(`    ↳ Verified: Local workerd honours custom 404.`);
+        console.log(`    ↳ Production branded 404: PENDING — verify after merge and deployment.`);
       }
     } else {
       fail(`Unknown route returned HTTP ${unknown.status} instead of 404`);
