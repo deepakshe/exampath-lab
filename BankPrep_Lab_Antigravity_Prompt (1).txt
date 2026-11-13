@@ -1,0 +1,119 @@
+You are a senior product engineer and UX designer. Build a production-quality MVP website named “BankPrep Lab” from the following specification. Do not merely describe the solution—create the complete working project files in the current workspace, run the build, fix errors and provide exact deployment instructions.
+
+PRODUCT
+BankPrep Lab is a bilingual (English + Hindi) learning and revision library for Indian government-exam aspirants. It is designed around: What to study → How to understand → How to remember → How to solve → How to revise.
+
+AUDIENCE
+The data model and navigation must support Banking (SBI PO/Clerk, IBPS PO/CSA, RRB PO/Office Assistant, RBI Assistant), SSC (CGL/CHSL/MTS/GD), Railways (NTPC/Group D), Defence and State Government exams. This is an extensible exam taxonomy, NOT a claim that all exam syllabi are fully covered at launch. Only display an exam tag on a resource after its relevance has been checked. Do not invent UPSC/state-specific coverage.
+
+SUBJECTS
+English; Quantitative Aptitude; Reasoning; General Awareness; Banking & Financial Awareness; Computer Awareness. Build the subject architecture so sections can be activated gradually. Do not fill empty areas with fake content.
+
+LEARNING MODES
+1. Beginner: zero-based concepts, prerequisites, simple bilingual explanations, worked examples and guided practice.
+2. Intermediate: exam-level patterns, standard method, valid alternate/short method, traps and timed practice.
+3. Revision: concise notes, flashcards, memory hooks, MCQs, spaced recall and mistake review.
+Show a shortcut only when valid for that question type and explain its conditions. Do not claim guaranteed marks, guaranteed selection or guaranteed speed improvement.
+
+TECH STACK
+Use Astro + TypeScript with static output and lightweight vanilla TypeScript interactions. Use clean CSS or Tailwind, but avoid unnecessary dependencies. The website should be SEO-friendly and mobile-first. If there is a concrete technical blocker with Astro, use React + Vite + TypeScript while preserving static SEO requirements; do not change stacks repeatedly.
+Deploy target: Cloudflare Pages Free using Git integration, build command `npm run build`, output directory `dist`. Use a free `*.pages.dev` subdomain initially. Do NOT select Direct Upload because the project should connect to GitHub for automatic deploys. Do not use Vercel Hobby or GitHub Pages for this commercial project.
+
+V1 SCOPE — BUILD NOW
+- Responsive static site.
+- Home page with exam selector, subject cards, latest resources, study paths and free sample CTA.
+- Exam directory and exam detail pages.
+- Subject directory and subject pages.
+- Searchable library with filters for exam, subject, topic, difficulty, learner mode, type and free/premium.
+- Resource detail pages.
+- Beginner, Intermediate and Revision path pages.
+- Weekly pack archive and weekly pack detail pages.
+- Pricing/access, About, Contact, Terms, Privacy, Refund Policy and 404 pages.
+- Bilingual UI toggle English / हिंदी. Resource content has separate English and Hindi fields. If a translation is missing, use a graceful fallback and visually indicate if appropriate; do not render `undefined`.
+- SEO: unique title/meta description, canonical URL, Open Graph, sitemap.xml, robots.txt, semantic HTML, breadcrumbs and internal links.
+- Accessible keyboard navigation, visible focus state, appropriate contrast, reduced motion support and useful empty/error states.
+- Add a README with local setup, content editing, free PDF upload and Cloudflare Pages deployment steps.
+
+DO NOT BUILD IN V1
+No user accounts, passwords, subscriptions, recurring payments, admin dashboard, AI chatbot, live class system, rank list, mock-test engine, forum or automated payment webhook. Keep the MVP static and easy to maintain.
+
+PAYMENT AND PREMIUM CONTENT RULES
+- Put product names, INR prices and optional Razorpay Payment Link URLs in `src/data/site-config.ts` or a single products JSON file.
+- Never invent a live payment URL. If the owner has not added a real link, disable the Buy button and show “Payments opening soon”. Never link to `#` as a fake checkout.
+- For pilot orders, explain that payment is checked manually and premium material is delivered by email/WhatsApp after verification. Use honest owner-editable delivery wording.
+- A return URL/query string is NOT proof of payment. Never unlock premium content based only on a browser redirect.
+- Do not put premium PDF files under `public/`, `src/`, `dist/`, or in the Git repository. Premium content is delivered manually during the pilot. Free sample PDFs may be stored in `public/downloads/free/` if within Cloudflare Pages asset limits.
+- Do not place secret keys, payment gateway secrets, personal customer data or real buyer records in frontend code or Git.
+- Include a `docs/PAYMENT_FULFILMENT_SOP.md` describing manual payment verification and delivery.
+- Document automated Razorpay webhook delivery as a future phase only. Any future webhook must verify HMAC-SHA256 against the raw body using `X-Razorpay-Signature`, deduplicate using `x-razorpay-event-id`, and grant entitlements only after verified payment. Store secrets as Cloudflare encrypted secrets. Do not implement this now.
+
+CONTENT MANAGEMENT
+Use JSON files in `src/content/` as a lightweight Git-based CMS. The owner will add/edit JSON and commit changes. There is no content admin dashboard in v1.
+Create TypeScript types plus runtime validation (Astro content collections/Zod or another lightweight validator) for:
+- exam: id, slug, name_en, name_hi, family, is_active
+- subject: id, slug, name_en, name_hi, sort_order, is_active
+- resource: id, slug, type, bilingual title and summary, subjectId, topicIds, examTags, level, modes, languageMode, access, status, keywords, estimatedMinutes, publishedAt, updatedAt, version, objectives, sections, questionIds, pdf metadata, sources and review metadata
+- question: id, subjectId, topicId, examTags, level, questionType, bilingual prompt, options, correctOptionId, beginner solution, fast solution, common trap, targetTimeSeconds, sourceType, source reference, reviewStatus and reviewedAt
+Use statuses `draft`, `review`, `verified`, `published`. Only `published` and `verified` content should appear publicly. Current-affairs resources must show sources, event date (if applicable), publication date and last-verified date. Do not fabricate citations.
+
+STARTER CONTENT
+Create a small but polished initial library; these are samples, not complete courses:
+1. English: a bilingual 15-word vocabulary recall sample. Each word has correct meaning, synonyms, antonyms, a natural example, an original memory hook only when useful, and one recall question. Clearly mark it as a sample.
+2. Quant: a Percentage Foundation lesson with 5 original MCQs, accurate beginner explanations and one valid short method.
+3. Reasoning: an Inequality Foundation lesson with 5 original MCQs and step-by-step explanations.
+4. General Awareness: create only a structure/sample placeholder that says “Verified content coming soon” unless you can provide properly sourced, current, verified facts. Never make up current affairs.
+5. A free 3-day Common Foundation Challenge. If you can create a downloadable PDF reliably, include it in `public/downloads/free/`; otherwise create print-friendly HTML plus instructions to export it as PDF. Never leave a broken download link.
+All questions must be original or appropriately licensed. Do not copy proprietary coaching PDFs or paid question banks. Check every answer independently before marking verified.
+
+PAGES/ROUTES
+/ ; /exams/ ; /exams/[exam-slug]/ ; /subjects/ ; /subjects/[subject-slug]/ ; /library/ ; /library/[resource-slug]/ ; /learn/[subject]/[topic]/ ; /paths/beginner/ ; /paths/intermediate/ ; /paths/revision/ ; /weekly/ ; /weekly/[pack-slug]/ ; /pricing/ ; /about/ ; /contact/ ; /legal/terms/ ; /legal/privacy/ ; /legal/refund/ ; /404/.
+Use clean lowercase slugs. Include breadcrumbs and related resources.
+
+DESIGN
+Use a premium but restrained exam-preparation design: deep navy, off-white, teal/green accent, readable typography, high contrast, plenty of whitespace. Mobile first. Avoid excessive gradients, animation, fake urgency, fake testimonials, fake sales numbers or fabricated student results. Main nav: Home, Exams, Subjects, Library, Weekly Packs, Study Paths. Homepage hierarchy: hero promise + free sample CTA; exam selector; subject grid; three learning modes; latest free resources; featured premium pack; how to use the library; editorial standards; footer.
+Each resource card must show title, subject, exam tags, level, type, Free/Premium status and last-updated date. Resource pages must show objectives, prerequisites, explanation, worked example, practice, answer/solution, revision box, sources and review status where relevant.
+
+SEARCH/FILTER
+Search title, summary, keywords, subject/topic and exam tags. Filters should combine, be clearable and update the result count. Add an empty state with “Clear filters”. Make search/filter work on mobile. No backend search is needed; use the static JSON index.
+
+DATABASE PLAN
+The MVP must work without D1. Create `database/schema-v2.sql` as a future migration file with SQLite/D1 tables for exams, subjects, topics, resources, resource_exam_tags, questions, products, product_resources, purchases, entitlements, webhook_events and feedback. Use parameterised query guidance in docs. Do not activate D1 bindings or write backend purchase endpoints in v1. Do not create user accounts.
+
+CONTENT FILES / PROJECT STRUCTURE
+Create a maintainable structure similar to:
+public/downloads/free/, public/images/covers/, src/components/, src/content/exams.json, src/content/subjects.json, src/content/learning-paths.json, src/content/library/*.json, src/layouts/, src/pages/, src/styles/, src/data/site-config.ts, src/utils/, database/schema-v2.sql, docs/, README.md, .env.example, .gitignore, astro.config.mjs, package.json.
+Split large components sensibly. Keep content separate from UI. Never place secrets in `.env.example`; include names only with placeholder values.
+
+BUDGET / INFRASTRUCTURE
+Target total cash spend ₹0 until validation. Cloudflare Pages Free + GitHub Free. No custom domain at launch. D1 and R2 are future options only; static MVP does not need them. Keep ₹2,000 unspent except a ₹500 first ad test after organic validation and a further ₹500 test only if first results justify it; preserve ₹1,000 reserve. Do not recommend purchasing templates, plugins or paid AI subscriptions.
+
+QUALITY CHECKS BEFORE FINISHING
+1. Run install and production build; fix all type/build errors.
+2. Check every page and route.
+3. Check mobile layout at narrow width and desktop layout.
+4. Check language toggle and fallback behavior.
+5. Check search plus combined filters and clear-filter behavior.
+6. Verify all sample MCQ answers mathematically/factually; show answer explanations only after interaction if appropriate.
+7. Check free download paths and file existence.
+8. Check no premium file appears in public/static output.
+9. Check all Buy buttons are disabled unless a real configured Payment Link is present.
+10. Search repository for placeholder links, lorem ipsum, fake testimonials, fake sales claims, exposed secrets and TODOs that break the UX.
+11. Verify title/meta/OG/canonical/sitemap/robots output.
+12. Ensure legal page text is clearly an owner-review draft and not a false claim of legal compliance.
+
+DELIVERABLES
+- Complete working source code in the current workspace.
+- `README.md` with exact local run/build/deploy commands.
+- `docs/CONTENT_WORKFLOW.md` explaining how to add a new exam, subject, bilingual resource, question and free PDF.
+- `docs/CLOUDFLARE_DEPLOYMENT.md` with GitHub + Cloudflare Pages Free setup steps, build command and output directory.
+- `docs/PAYMENT_FULFILMENT_SOP.md` for manual pilot payment verification/delivery and future webhook security requirements.
+- `database/schema-v2.sql` for future D1 use.
+- A build/test report listing what passed, known limitations and any owner action still required.
+
+WORKING RULES
+- First inspect the workspace. If it contains existing code, preserve useful work and avoid destructive rewrites.
+- Do not ask the user to choose libraries or design details; make sensible low-cost decisions.
+- Do not claim deployment has happened unless you actually deploy using authorized tools. Prepare deployment instructions if credentials are unavailable.
+- Do not fabricate payment URLs, company registration, GST status, user testimonials, market demand or official endorsements.
+- Prefer a small, finished, verified MVP over an oversized feature list.
+Now create the project, run the build and report the exact files created and steps still requiring the owner.

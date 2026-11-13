@@ -1,0 +1,233 @@
+---
+interface Option {
+  id: string;
+  text: string;
+}
+
+interface Question {
+  id: string;
+  prompt_en: string;
+  prompt_hi: string;
+  options: Option[];
+  correctOptionId: string;
+  targetTimeSeconds?: number;
+  beginner_solution_en: string;
+  beginner_solution_hi: string;
+  fast_solution_en?: string;
+  fast_solution_hi?: string;
+  common_trap?: string;
+}
+
+interface Props {
+  questions: Question[];
+  title?: string;
+}
+
+const { questions, title = "Active Recall Practice Drill" } = Astro.props;
+---
+
+<div class="my-8 rounded-xl border border-[#E2DDD1] bg-[#FAF8F3] p-6 shadow-sm">
+  <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-[#E2DDD1] gap-2">
+    <div>
+      <span class="field-badge text-[#147D78] border-[#147D78]/30 bg-[#E8F3F2]">Interactive Drill</span>
+      <h3 class="font-heading font-extrabold text-xl text-[#172633] mt-1">{title}</h3>
+    </div>
+    <div class="text-xs text-[#536471] flex items-center gap-2">
+      <span class="inline-block w-2 h-2 rounded-full bg-[#147D78] animate-pulse"></span>
+      <span>Instant Feedback & Trap Alerts</span>
+    </div>
+  </div>
+
+  <div class="divide-y divide-[#E2DDD1]">
+    {questions.map((q, idx) => (
+      <div class="py-6 quiz-item" data-correct={q.correctOptionId} id={`quiz-q-${q.id}`}>
+        
+        <!-- Question Meta & Prompt -->
+        <div class="flex items-start justify-between gap-4 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-[#172633] text-white text-xs font-bold flex items-center justify-center">
+              {idx + 1}
+            </span>
+            {q.targetTimeSeconds && (
+              <span class="text-xs font-semibold px-2 py-0.5 rounded bg-[#ECE8DC] text-[#536471]">
+                Target: {q.targetTimeSeconds}s
+              </span>
+            )}
+          </div>
+          <span class="text-xs font-bold text-[#147D78] tracking-wider uppercase">Verified MCQ</span>
+        </div>
+
+        <div class="text-base font-semibold text-[#172633] leading-relaxed mb-4">
+          <div data-lang="en">{q.prompt_en}</div>
+          <div data-lang="hi" class="hidden font-hindi">{q.prompt_hi}</div>
+        </div>
+
+        <!-- Interactive Options -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-4 options-container">
+          {q.options.map((opt) => (
+            <button
+              type="button"
+              class="quiz-option flex items-center gap-3 p-3 rounded-lg border border-[#E2DDD1] bg-white text-left font-medium text-sm text-[#172633] hover:border-[#147D78] hover:bg-[#F4F9F9] transition-all"
+              data-opt-id={opt.id}
+            >
+              <span class="w-6 h-6 rounded border border-[#E2DDD1] flex items-center justify-center font-bold text-xs bg-[#FAF8F3]">
+                {opt.id}
+              </span>
+              <span>{opt.text}</span>
+            </button>
+          ))}
+        </div>
+
+        <!-- Result Status Banner (Hidden Initially) -->
+        <div class="hidden result-banner p-3 rounded-lg mb-4 text-sm font-bold flex items-center justify-between">
+          <span class="result-text"></span>
+          <button type="button" class="toggle-expl-btn text-xs underline font-semibold text-[#147D78]">
+            View Full Explanation ↓
+          </button>
+        </div>
+
+        <!-- Detailed Solutions & Common Trap Box -->
+        <div class="hidden explanation-box mt-4 space-y-3 pt-4 border-t border-[#E2DDD1]">
+          
+          <!-- Beginner Solution -->
+          <div class="p-4 rounded-lg bg-white border border-[#E2DDD1]">
+            <div class="text-xs font-bold text-[#147D78] uppercase tracking-wider mb-1">
+              Method 1: Step-by-Step Foundation (Beginner)
+            </div>
+            <div class="text-sm text-[#172633] whitespace-pre-line" data-lang="en">
+              {q.beginner_solution_en}
+            </div>
+            <div class="text-sm text-[#172633] whitespace-pre-line hidden font-hindi" data-lang="hi">
+              {q.beginner_solution_hi}
+            </div>
+          </div>
+
+          <!-- Fast Shortcut (if available) -->
+          {q.fast_solution_en && (
+            <div class="p-4 rounded-lg bg-[#E8F3F2] border border-[#BADBD8]">
+              <div class="text-xs font-bold text-[#147D78] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Method 2: 15-Second Exam Shortcut
+              </div>
+              <div class="text-sm text-[#172633] font-medium whitespace-pre-line" data-lang="en">
+                {q.fast_solution_en}
+              </div>
+              <div class="text-sm text-[#172633] font-medium whitespace-pre-line hidden font-hindi" data-lang="hi">
+                {q.fast_solution_hi}
+              </div>
+            </div>
+          )}
+
+          <!-- Common Exam Trap Alert -->
+          {q.common_trap && (
+            <div class="p-4 rounded-lg bg-[#FDF4EB] border border-[#F6D0A9]">
+              <div class="text-xs font-bold text-[#D98D45] uppercase tracking-wider mb-1 flex items-center gap-1.5">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+                Exam Trap Warning (Avoid Negative Marks)
+              </div>
+              <div class="text-sm text-[#5C340B] leading-relaxed">
+                {q.common_trap}
+              </div>
+            </div>
+          )}
+
+          <!-- FSRS Recall Rating -->
+          <div class="pt-3 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <span class="font-bold text-[#536471]">Active Recall Self-Grade:</span>
+            <div class="flex items-center gap-1.5 fsrs-grade-container">
+              <button type="button" class="fsrs-btn px-2.5 py-1 rounded bg-rose-100 hover:bg-rose-200 text-rose-800 font-semibold" data-grade="Again">Again (0)</button>
+              <button type="button" class="fsrs-btn px-2.5 py-1 rounded bg-amber-100 hover:bg-amber-200 text-amber-800 font-semibold" data-grade="Hard">Hard (1)</button>
+              <button type="button" class="fsrs-btn px-2.5 py-1 rounded bg-blue-100 hover:bg-blue-200 text-blue-800 font-semibold" data-grade="Good">Good (2)</button>
+              <button type="button" class="fsrs-btn px-2.5 py-1 rounded bg-emerald-100 hover:bg-emerald-200 text-emerald-800 font-semibold" data-grade="Easy">Easy (3)</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.quiz-item').forEach((item) => {
+    const correctOpt = item.getAttribute('data-correct');
+    const options = item.querySelectorAll('.quiz-option');
+    const banner = item.querySelector('.result-banner');
+    const bannerText = item.querySelector('.result-text');
+    const explanationBox = item.querySelector('.explanation-box');
+    const toggleExplBtn = item.querySelector('.toggle-expl-btn');
+    let answered = false;
+
+    options.forEach((optBtn) => {
+      optBtn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+
+        const chosenOpt = optBtn.getAttribute('data-opt-id');
+        const isCorrect = chosenOpt === correctOpt;
+
+        // Disable all option buttons
+        options.forEach(b => (b as HTMLButtonElement).disabled = true);
+
+        if (isCorrect) {
+          optBtn.classList.remove('bg-white', 'border-[#E2DDD1]');
+          optBtn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900', 'ring-2', 'ring-emerald-500/20');
+          if (banner && bannerText) {
+            banner.classList.remove('hidden');
+            banner.classList.add('bg-emerald-100', 'text-emerald-900', 'border', 'border-emerald-300');
+            bannerText.innerHTML = '✓ Correct Answer! Well done.';
+          }
+        } else {
+          optBtn.classList.remove('bg-white', 'border-[#E2DDD1]');
+          optBtn.classList.add('bg-rose-50', 'border-rose-500', 'text-rose-900');
+
+          // Highlight the actual correct option
+          options.forEach((b) => {
+            if (b.getAttribute('data-opt-id') === correctOpt) {
+              b.classList.remove('bg-white', 'border-[#E2DDD1]');
+              b.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-900');
+            }
+          });
+
+          if (banner && bannerText) {
+            banner.classList.remove('hidden');
+            banner.classList.add('bg-rose-100', 'text-rose-900', 'border', 'border-rose-300');
+            bannerText.innerHTML = `✕ Incorrect. The correct option is <strong>(${correctOpt})</strong>.`;
+          }
+        }
+
+        // Automatically reveal explanations
+        explanationBox?.classList.remove('hidden');
+      });
+    });
+
+    toggleExplBtn?.addEventListener('click', () => {
+      explanationBox?.classList.toggle('hidden');
+    });
+
+    // FSRS grading feedback
+    const fsrsBtns = item.querySelectorAll('.fsrs-btn');
+    fsrsBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const grade = btn.getAttribute('data-grade');
+        fsrsBtns.forEach(b => b.classList.add('opacity-40'));
+        btn.classList.remove('opacity-40');
+        btn.classList.add('ring-2', 'ring-offset-1');
+        
+        // Show subtle feedback
+        const container = item.querySelector('.fsrs-grade-container');
+        if (container) {
+          const toast = document.createElement('span');
+          toast.className = 'text-xs text-[#147D78] font-bold ml-2';
+          toast.textContent = `Saved (${grade})`;
+          container.appendChild(toast);
+          setTimeout(() => toast.remove(), 2500);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,73 @@
+[
+  {
+    "id": "drop-01",
+    "slug": "vocab-mnemonic-pack-vol-1",
+    "title_en": "Vocabulary Recall Pack: 30 Editorial Words & Mnemonic Hooks",
+    "title_hi": "शब्दावली रीकॉल पैक: 30 संपादकीय शब्द और निमोनिक ट्रिक्स",
+    "subject": "English Language",
+    "subjectId": "english",
+    "examTags": ["Banking", "SSC", "Defence"],
+    "date": "Week 46, 2026",
+    "badge": "Weekly Drop #01",
+    "access": "Premium",
+    "price_inr": 49,
+    "word_count": 30,
+    "summary_en": "High-frequency editorial words extracted from top national dailies with Latin/Greek roots, contextual sentences, mnemonic visuals, and one recall MCQ per word.",
+    "summary_hi": "शीर्ष राष्ट्रीय समाचार पत्रों से संकलित उच्च-आवृत्ति संपादकीय शब्द, रूट अर्थ, संदर्भ वाक्य, स्मृति ट्रिक्स और प्रति शब्द एक रीकॉल प्रश्न।",
+    "table_of_contents": [
+      "Root System Analysis: MAL, BENE, CHRON, PATH",
+      "15 High-Yield Adjectives for Tone Analysis",
+      "15 Abstract Nouns for Reading Comprehension & Cloze Tests",
+      "Rapid-Fire 30-Question Printable Recall Grid",
+      "Printable Flashcard Cutouts"
+    ],
+    "sample_included": true
+  },
+  {
+    "id": "drop-02",
+    "slug": "quant-percentage-speed-pack",
+    "title_en": "Quant Speed Pack: Fractions, Multipliers & Successive Changes",
+    "title_hi": "क्वांट स्पीड पैक: भिन्न, गुणक और क्रमिक प्रतिशत परिवर्तन",
+    "subject": "Quantitative Aptitude",
+    "subjectId": "quant",
+    "examTags": ["Banking", "SSC", "Railways"],
+    "date": "Week 46, 2026",
+    "badge": "Weekly Drop #02",
+    "access": "Premium",
+    "price_inr": 49,
+    "question_count": 25,
+    "summary_en": "Eliminate calculations in percentage increase/decrease, expenditure-consumption balance, and population succession with 25 verified questions.",
+    "summary_hi": "प्रतिशत वृद्धि/कमी, खर्च-खपत संतुलन और जनसंख्या क्रमिक परिवर्तन में गणना को समाप्त करने के लिए 25 सत्यापित प्रश्न।",
+    "table_of_contents": [
+      "The Mental Fraction Ladder: 1/1 through 1/25",
+      "Multiplying Factors (MF) in Profit & Loss",
+      "Successive Change Matrix (x + y + xy/100 Shortcuts)",
+      "25 Exam-Level Questions with Beginner vs Speed Solutions",
+      "Common Misleading Traps & Penalty Prevention"
+    ],
+    "sample_included": true
+  },
+  {
+    "id": "drop-03",
+    "slug": "common-foundation-challenge",
+    "title_en": "Free 3-Day Common Foundation Challenge (All Exams)",
+    "title_hi": "मुफ्त 3-दिवसीय कॉमन फाउंडेशन चैलेंज (सभी परीक्षाएं)",
+    "subject": "Foundation Multi-Subject",
+    "subjectId": "all",
+    "examTags": ["Banking", "SSC", "Railways", "Defence", "State"],
+    "date": "Always Free Core",
+    "badge": "Free Core Library",
+    "access": "Free",
+    "price_inr": 0,
+    "summary_en": "The definitive 3-day starter kit for any aspirant. Covers percentage fundamentals, root vocabulary, and inequality speed rules with immediate printable cheat-sheets.",
+    "summary_hi": "किसी भी अभ्यर्थी के लिए 3-दिवसीय अनिवार्य प्रारंभिक किट। प्रतिशत की नींव, रूट शब्दावली और असमानता के गति नियम।",
+    "table_of_contents": [
+      "Day 1: English High-Yield Root Words & Mnemonic Framework",
+      "Day 2: Quant Percentage Fractions & Expenditure Laws",
+      "Day 3: Reasoning Inequality King/Soldier Hierarchy",
+      "Self-Assessment Diagnostic Quiz (15 MCQs with Full Explanations)"
+    ],
+    "download_url": "/downloads/free/Common-Foundation-Challenge-Day1-3.html",
+    "sample_included": true
+  }
+]

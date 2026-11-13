@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import weeklyPacks from '../../data/weekly-packs.json';
+import { siteConfig } from '../../data/site-config';
+
+export async function getStaticPaths() {
+  return weeklyPacks.map((pack) => ({
+    params: { slug: pack.slug },
+    props: { pack },
+  }));
+}
+
+const { pack } = Astro.props;
+---
+
+<BaseLayout
+  title={`${pack.title_en} — ExamPath Lab Weekly`}
+  description={pack.summary_en}
+  breadcrumbs={[
+    { label: 'Weekly Drops', href: '/weekly/' },
+    { label: pack.title_en }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Pack Detail Header -->
+    <div class="rounded-2xl p-6 sm:p-10 bg-white border border-[#E2DDD1] shadow-sm mb-10">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <span class="field-badge text-[#D98D45] border-[#D98D45]/30 bg-[#FDF4EB]">
+          {pack.badge} · {pack.date}
+        </span>
+        <span class={`text-xs font-black px-3 py-1 rounded-full ${pack.access === 'Free' ? 'bg-[#D7EF72]/40 text-[#172633]' : 'bg-[#D98D45]/20 text-[#D98D45]'}`}>
+          {pack.access === 'Free' ? 'Free Core Library' : `Pilot Launch: ₹${pack.price_inr}`}
+        </span>
+      </div>
+
+      <h1 class="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[#172633] leading-tight">
+        <span data-lang="en">{pack.title_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{pack.title_hi}</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-[#536471] mt-3 leading-relaxed">
+        <span data-lang="en">{pack.summary_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{pack.summary_hi}</span>
+      </p>
+
+      <!-- Action Box -->
+      <div class="mt-8 p-6 rounded-xl bg-[#FAF8F3] border border-[#E2DDD1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs font-bold text-[#536471] uppercase tracking-wider">Acquisition Status</div>
+          <div class="font-heading font-extrabold text-xl text-[#172633] mt-0.5">
+            {pack.access === 'Free' ? 'Instant Free Download' : `₹${pack.price_inr} (Pilot Test Rate)`}
+          </div>
+          <div class="text-xs text-[#536471] mt-0.5">
+            {pack.access === 'Free' ? 'No email required · Direct access' : 'Delivered manually via verified WhatsApp/Email during pilot'}
+          </div>
+        </div>
+
+        {pack.access === 'Free' ? (
+          <a
+            href="/downloads/free/Common-Foundation-Challenge-Day1-3.html"
+            target="_blank"
+            class="px-6 py-3 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold transition-colors"
+          >
+            Download Free Pack →
+          </a>
+        ) : (
+          <div class="flex flex-col items-end gap-1.5">
+            <button
+              type="button"
+              disabled
+              class="px-6 py-3 rounded-lg bg-[#E2DDD1] text-[#7F92A3] text-xs font-bold cursor-not-allowed"
+              title="Automated payment gateways are offline during the initial testing phase"
+            >
+              Payments opening soon
+            </button>
+            <span class="text-[10px] text-[#536471]">
+              Manual pilot orders: <a href="/contact/" class="text-[#147D78] underline font-semibold">Contact support</a>
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Syllabus Table of Contents -->
+    <div class="rounded-xl p-6 sm:p-8 bg-white border border-[#E2DDD1] mb-8">
+      <h2 class="font-heading font-extrabold text-xl text-[#172633] mb-4 pb-3 border-b border-[#E2DDD1]">
+        Complete Pack Contents & Modules
+      </h2>
+      <ul class="space-y-3">
+        {pack.table_of_contents.map((item, idx) => (
+          <li class="flex items-start gap-3 p-3 rounded-lg bg-[#FAF8F3] border border-[#E2DDD1]">
+            <span class="w-6 h-6 rounded-full bg-[#147D78] text-white text-xs font-bold flex items-center justify-center shrink-0">
+              {idx + 1}
+            </span>
+            <span class="text-sm font-semibold text-[#172633]">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Pilot Fulfillment Notice -->
+    <div class="p-6 rounded-xl bg-[#FAF8F3] border border-[#E2DDD1] text-xs space-y-2">
+      <div class="font-bold text-[#172633] uppercase tracking-wider flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-[#D98D45]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Pilot Testing & Delivery Policy
+      </div>
+      <p class="text-[#536471] leading-relaxed">
+        To preserve our ₹0 operational budget before formal commercial launch, we do not expose automated third-party payment scripts or recurring charges. In accordance with our <a href="/pricing/" class="text-[#147D78] underline">Manual Pilot Fulfillment SOP</a>, verified pilot orders are fulfilled directly by mentors via email or WhatsApp within 2–6 hours.
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>

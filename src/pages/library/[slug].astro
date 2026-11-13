@@ -1,0 +1,233 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InteractiveQuiz from '../../components/InteractiveQuiz.astro';
+import resources from '../../data/resources.json';
+import questions from '../../data/questions.json';
+
+export async function getStaticPaths() {
+  return resources.map((res) => ({
+    params: { slug: res.slug },
+    props: { resource: res },
+  }));
+}
+
+const { resource } = Astro.props;
+const matchedQuestions = questions.filter((q) =>
+  resource.questionIds.includes(q.id)
+);
+---
+
+<BaseLayout
+  title={`${resource.title_en} — ExamPath Lab`}
+  description={resource.summary_en}
+  breadcrumbs={[
+    { label: 'Library', href: '/library/' },
+    { label: resource.title_en }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    
+    <!-- Resource Header Card -->
+    <div class="rounded-2xl p-6 sm:p-8 bg-white border border-[#E2DDD1] shadow-sm mb-8">
+      <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-[#E2DDD1]">
+        <div class="flex items-center gap-2">
+          <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">
+            {resource.subjectName}
+          </span>
+          <span class="text-xs font-bold text-[#536471]">
+            {resource.type}
+          </span>
+        </div>
+        
+        <div class="flex items-center gap-2">
+          <button
+            id="print-guide-btn"
+            type="button"
+            class="px-3 py-1.5 rounded-md border border-[#E2DDD1] hover:border-[#147D78] bg-[#FAF8F3] text-xs font-bold text-[#172633] flex items-center gap-1.5"
+            onclick="window.print()"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+            </svg>
+            Print Guide
+          </button>
+          <button
+            id="resource-bookmark-btn"
+            data-slug={resource.slug}
+            type="button"
+            class="p-1.5 rounded-md border border-[#E2DDD1] hover:border-[#147D78] bg-[#FAF8F3] text-[#536471] hover:text-[#147D78]"
+            title="Bookmark Resource"
+          >
+            <svg class="w-4 h-4 res-bookmark-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Title -->
+      <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633] mt-4 leading-tight">
+        <span data-lang="en">{resource.title_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{resource.title_hi}</span>
+      </h1>
+
+      <!-- Summary -->
+      <p class="text-sm text-[#536471] mt-3 leading-relaxed">
+        <span data-lang="en">{resource.summary_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{resource.summary_hi}</span>
+      </p>
+
+      <!-- Exam & Mode Tags -->
+      <div class="mt-5 pt-4 border-t border-[#E2DDD1] flex flex-wrap items-center justify-between gap-4 text-xs">
+        <div class="flex flex-wrap items-center gap-1.5">
+          <span class="font-bold text-[#172633]">Applicable Exams:</span>
+          {resource.examTags.map(tag => (
+            <span class="px-2 py-0.5 rounded bg-[#FAF8F3] border border-[#E2DDD1] text-[#536471] font-semibold">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <div class="flex items-center gap-3 text-[#536471]">
+          <span>⏱ {resource.estimatedMinutes} Mins</span>
+          <span>•</span>
+          <span>{resource.level}</span>
+          <span>•</span>
+          <span class="text-[#147D78] font-bold">{resource.access} Core</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Objectives & Prerequisites Box -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+      
+      <!-- Objectives -->
+      <div class="p-5 rounded-xl bg-[#FAF8F3] border border-[#E2DDD1]">
+        <div class="text-xs font-bold uppercase tracking-wider text-[#147D78] mb-2">Learning Objectives</div>
+        <ul class="text-xs text-[#172633] space-y-1.5" data-lang="en">
+          {resource.objectives_en.map(obj => (
+            <li class="flex items-start gap-1.5">
+              <span class="text-[#147D78] font-bold">✓</span>
+              <span>{obj}</span>
+            </li>
+          ))}
+        </ul>
+        <ul class="text-xs text-[#172633] space-y-1.5 hidden font-hindi" data-lang="hi">
+          {resource.objectives_hi.map(obj => (
+            <li class="flex items-start gap-1.5">
+              <span class="text-[#147D78] font-bold">✓</span>
+              <span>{obj}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Prerequisites -->
+      <div class="p-5 rounded-xl bg-white border border-[#E2DDD1]">
+        <div class="text-xs font-bold uppercase tracking-wider text-[#536471] mb-2">Prerequisites</div>
+        <p class="text-xs text-[#536471] leading-relaxed" data-lang="en">
+          {resource.prerequisites_en}
+        </p>
+        <p class="text-xs text-[#536471] leading-relaxed hidden font-hindi" data-lang="hi">
+          {resource.prerequisites_hi}
+        </p>
+        <div class="mt-4 pt-3 border-t border-[#E2DDD1] text-[11px] text-[#A0B0BF]">
+          Language Mode: {resource.languageMode}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Core Content Sections -->
+    <div class="space-y-6 mb-12">
+      {resource.sections.map((sec, idx) => (
+        <section class="rounded-xl p-6 sm:p-8 bg-white border border-[#E2DDD1] shadow-xs">
+          <h2 class="font-heading font-extrabold text-lg sm:text-xl text-[#172633] pb-3 border-b border-[#E2DDD1]">
+            <span data-lang="en">{sec.heading_en}</span>
+            <span data-lang="hi" class="hidden font-hindi">{sec.heading_hi}</span>
+          </h2>
+          
+          <div class="mt-4 text-sm text-[#172633] leading-relaxed whitespace-pre-line font-normal" data-lang="en">
+            {sec.content_en}
+          </div>
+
+          <div class="mt-4 text-sm text-[#172633] leading-relaxed whitespace-pre-line hidden font-hindi" data-lang="hi">
+            {sec.content_hi}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Verified Practice Drills (if matched questions exist) -->
+    {matchedQuestions.length > 0 && (
+      <div class="mb-12">
+        <InteractiveQuiz
+          questions={matchedQuestions}
+          title={`Practice & Recall Drills for ${resource.title_en}`}
+        />
+      </div>
+    )}
+
+    <!-- Editorial Integrity & Citations Box -->
+    <div class="rounded-xl p-6 bg-[#FAF8F3] border border-[#E2DDD1] text-xs space-y-2">
+      <div class="font-bold text-[#172633] uppercase tracking-wider flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        </svg>
+        Editorial Verification & Citations
+      </div>
+      <div class="text-[#536471]">
+        <strong>Source Reference:</strong> {resource.sources}
+      </div>
+      <div class="text-[#536471]">
+        <strong>Verification Status:</strong> {resource.reviewMetadata} · Published: {resource.publishedAt} · Last Updated: {resource.updatedAt}
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  // Bookmark toggle for this resource
+  const btn = document.getElementById('resource-bookmark-btn');
+  const slug = btn?.getAttribute('data-slug');
+  const icon = btn?.querySelector('.res-bookmark-icon');
+
+  function checkBookmark() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('exampath_bookmarks') || '[]');
+      if (slug && saved.includes(slug)) {
+        btn?.classList.add('text-[#147D78]');
+        icon?.setAttribute('fill', 'currentColor');
+      } else {
+        btn?.classList.remove('text-[#147D78]');
+        icon?.setAttribute('fill', 'none');
+      }
+    } catch {}
+  }
+
+  checkBookmark();
+
+  btn?.addEventListener('click', () => {
+    if (!slug) return;
+    try {
+      let saved = JSON.parse(localStorage.getItem('exampath_bookmarks') || '[]');
+      if (saved.includes(slug)) {
+        saved = saved.filter((s: string) => s !== slug);
+      } else {
+        saved.push(slug);
+      }
+      localStorage.setItem('exampath_bookmarks', JSON.stringify(saved));
+      checkBookmark();
+      
+      const badge = document.getElementById('bookmarks-count-badge');
+      if (badge) {
+        if (saved.length > 0) {
+          badge.textContent = String(saved.length);
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+      }
+    } catch {}
+  });
+</script>

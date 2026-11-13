@@ -1,0 +1,109 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../data/site-config';
+---
+
+<BaseLayout
+  title="Contact & Editorial Support — ExamPath Lab"
+  description="Get in touch with the editorial team at ExamPath Lab for syllabus feedback, verified answers, or pilot order assistance."
+  breadcrumbs={[{ label: 'Contact' }]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <div class="max-w-3xl mb-12">
+      <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Direct Help Desk</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        Contact the Editorial Desk
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        Have a question about a question explanation, found an erratum, or inquiring about pilot weekly study packs? We respond promptly during operational hours.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Contact Cards -->
+      <div class="md:col-span-1 space-y-4">
+        <div class="p-5 rounded-xl bg-white border border-[#E2DDD1]">
+          <div class="text-xs font-bold text-[#536471] uppercase tracking-wider">Email Correspondence</div>
+          <div class="font-heading font-bold text-base text-[#147D78] mt-1 break-all">
+            {siteConfig.contact.email}
+          </div>
+          <div class="text-[11px] text-[#A0B0BF] mt-1">Typical reply time: Within 4 hours</div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-[#E2DDD1]">
+          <div class="text-xs font-bold text-[#536471] uppercase tracking-wider">Operational Hours</div>
+          <div class="font-medium text-xs text-[#172633] mt-1">
+            {siteConfig.contact.support_hours}
+          </div>
+          <div class="text-[11px] text-[#A0B0BF] mt-1">New Delhi (IST)</div>
+        </div>
+
+        <div class="p-5 rounded-xl bg-[#FAF8F3] border border-[#E2DDD1]">
+          <div class="text-xs font-bold text-[#D98D45] uppercase tracking-wider">Pilot Fulfillment Desk</div>
+          <p class="text-xs text-[#536471] mt-1">
+            For priority manual delivery of weekly drops, include your order reference or subject request.
+          </p>
+        </div>
+      </div>
+
+      <!-- Message Form -->
+      <div class="md:col-span-2 rounded-2xl p-6 sm:p-8 bg-white border border-[#E2DDD1] shadow-sm">
+        <h2 class="font-heading font-extrabold text-xl text-[#172633] mb-4">
+          Send a Note to Our Mentors
+        </h2>
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you for contacting ExamPath Lab! Our editorial desk has received your message and will reply via email shortly.'); this.reset();">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1">Your Full Name</label>
+            <input
+              type="text"
+              required
+              placeholder="e.g. Rahul Sharma"
+              class="w-full p-2.5 rounded-lg border border-[#E2DDD1] bg-[#FAF8F3] text-sm text-[#172633] focus:bg-white focus:border-[#147D78] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1">Email Address</label>
+            <input
+              type="email"
+              required
+              placeholder="e.g. rahul@example.com"
+              class="w-full p-2.5 rounded-lg border border-[#E2DDD1] bg-[#FAF8F3] text-sm text-[#172633] focus:bg-white focus:border-[#147D78] focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1">Inquiry Category</label>
+            <select class="w-full p-2.5 rounded-lg border border-[#E2DDD1] bg-[#FAF8F3] text-sm text-[#172633] focus:bg-white focus:border-[#147D78] focus:outline-none">
+              <option>Pilot Study Pack Order Query</option>
+              <option>Report a Typo / Mathematical Erratum</option>
+              <option>Syllabus Coverage Request</option>
+              <option>General Mentorship Feedback</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1">Message</label>
+            <textarea
+              rows="4"
+              required
+              placeholder="Describe your question or feedback in detail..."
+              class="w-full p-2.5 rounded-lg border border-[#E2DDD1] bg-[#FAF8F3] text-sm text-[#172633] focus:bg-white focus:border-[#147D78] focus:outline-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold tracking-wide transition-colors"
+          >
+            Dispatch Message to Editorial Desk →
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</BaseLayout>

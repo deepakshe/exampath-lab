@@ -1,0 +1,212 @@
+---
+import flashcardsData from '../data/flashcards.json';
+
+interface Props {
+  cards?: typeof flashcardsData;
+}
+
+const { cards = flashcardsData } = Astro.props;
+---
+
+<div class="my-8 max-w-2xl mx-auto" id="flashcard-deck">
+  
+  <!-- Header & Progress -->
+  <div class="flex items-center justify-between pb-3 mb-4 border-b border-[#E2DDD1]">
+    <div class="flex items-center gap-2">
+      <span class="field-badge text-[#D98D45] border-[#D98D45]/30 bg-[#FDF4EB]">Active Recall Deck</span>
+      <span class="text-xs font-bold text-[#536471]">Flip to test memory</span>
+    </div>
+    <div class="text-xs font-extrabold text-[#147D78] bg-[#E8F3F2] px-2.5 py-1 rounded-full">
+      Card <span id="fc-current-idx">1</span> of <span id="fc-total-count">{cards.length}</span>
+    </div>
+  </div>
+
+  <!-- Interactive 3D Flip Card Container -->
+  <div class="relative w-full h-80 sm:h-96 cursor-pointer select-none perspective-1000" id="card-flipper">
+    
+    <!-- CARD FRONT -->
+    <div id="card-front" class="absolute inset-0 w-full h-full rounded-2xl bg-white border-2 border-[#E2DDD1] p-8 shadow-sm flex flex-col justify-between transition-all duration-300 hover:border-[#147D78] hover:shadow-md">
+      <div class="flex items-center justify-between">
+        <span id="fc-front-pos" class="text-xs font-bold uppercase tracking-wider text-[#536471] px-2.5 py-1 rounded bg-[#F5F2E9]">
+          {cards[0].pos}
+        </span>
+        <span class="text-xs text-[#147D78] font-bold flex items-center gap-1">
+          <span>Tap to flip</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </span>
+      </div>
+
+      <div class="text-center my-auto">
+        <div id="fc-front-term" class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] tracking-tight">
+          {cards[0].term}
+        </div>
+        <p class="text-xs text-[#536471] mt-3">Try to recall the meaning, Hindi translation, and mnemonic hook before flipping.</p>
+      </div>
+
+      <div class="text-center text-xs text-[#A0B0BF]">
+        Keyboard shortcut: Spacebar to flip
+      </div>
+    </div>
+
+    <!-- CARD BACK -->
+    <div id="card-back" class="hidden absolute inset-0 w-full h-full rounded-2xl bg-[#FAF8F3] border-2 border-[#147D78] p-6 sm:p-8 shadow-md flex flex-col justify-between overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between pb-3 border-b border-[#E2DDD1]">
+          <span id="fc-back-term" class="font-heading font-bold text-xl text-[#147D78]">
+            {cards[0].term}
+          </span>
+          <span class="text-xs text-[#536471] font-semibold">Tap to flip back</span>
+        </div>
+
+        <div class="mt-4 space-y-3 text-left">
+          <div>
+            <div class="text-xs font-bold uppercase text-[#536471]">Meaning</div>
+            <div id="fc-back-meaning-en" class="text-sm font-semibold text-[#172633]">
+              {cards[0].meaning_en}
+            </div>
+            <div id="fc-back-meaning-hi" class="text-sm text-[#147D78] font-hindi font-medium mt-0.5">
+              {cards[0].meaning_hi}
+            </div>
+          </div>
+
+          <!-- Desi Mnemonic Hook -->
+          <div class="p-3 rounded-lg bg-[#FDF4EB] border border-[#F6D0A9]">
+            <div class="text-xs font-bold text-[#D98D45] uppercase flex items-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Desi Mnemonic Hook
+            </div>
+            <div id="fc-back-mnemonic" class="text-xs text-[#5C340B] font-medium mt-1 leading-relaxed">
+              {cards[0].mnemonic}
+            </div>
+          </div>
+
+          <!-- Example -->
+          <div>
+            <div class="text-xs font-bold uppercase text-[#536471]">Editorial Context</div>
+            <div id="fc-back-example" class="text-xs italic text-[#172633] mt-0.5">
+              "{cards[0].example}"
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center text-[11px] text-[#536471] pt-2 border-t border-[#E2DDD1]">
+        Did you recall this correctly? Grade below:
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Navigation & Grading Controls -->
+  <div class="mt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+    
+    <!-- Prev / Next Controls -->
+    <div class="flex items-center gap-2">
+      <button id="fc-prev-btn" class="px-3 py-1.5 rounded-lg border border-[#E2DDD1] bg-white hover:bg-[#FAF8F3] text-[#172633] text-xs font-bold transition-colors">
+        ← Previous
+      </button>
+      <button id="fc-next-btn" class="px-3 py-1.5 rounded-lg border border-[#E2DDD1] bg-white hover:bg-[#FAF8F3] text-[#172633] text-xs font-bold transition-colors">
+        Next →
+      </button>
+    </div>
+
+    <!-- Recall Rating Buttons (FSRS Inspired) -->
+    <div class="flex items-center gap-1.5">
+      <button class="fc-grade-btn px-2.5 py-1 text-xs font-bold rounded bg-rose-100 hover:bg-rose-200 text-rose-800" data-grade="Again">Again</button>
+      <button class="fc-grade-btn px-2.5 py-1 text-xs font-bold rounded bg-amber-100 hover:bg-amber-200 text-amber-800" data-grade="Hard">Hard</button>
+      <button class="fc-grade-btn px-2.5 py-1 text-xs font-bold rounded bg-blue-100 hover:bg-blue-200 text-blue-800" data-grade="Good">Good</button>
+      <button class="fc-grade-btn px-2.5 py-1 text-xs font-bold rounded bg-emerald-100 hover:bg-emerald-200 text-emerald-800" data-grade="Easy">Easy</button>
+    </div>
+
+  </div>
+</div>
+
+<script define:vars={{ cards }}>
+  let currentIndex = 0;
+  let isFlipped = false;
+
+  const cardFlipper = document.getElementById('card-flipper');
+  const cardFront = document.getElementById('card-front');
+  const cardBack = document.getElementById('card-back');
+  
+  const currentIdxEl = document.getElementById('fc-current-idx');
+  const frontTermEl = document.getElementById('fc-front-term');
+  const frontPosEl = document.getElementById('fc-front-pos');
+  
+  const backTermEl = document.getElementById('fc-back-term');
+  const backMeaningEnEl = document.getElementById('fc-back-meaning-en');
+  const backMeaningHiEl = document.getElementById('fc-back-meaning-hi');
+  const backMnemonicEl = document.getElementById('fc-back-mnemonic');
+  const backExampleEl = document.getElementById('fc-back-example');
+
+  const prevBtn = document.getElementById('fc-prev-btn');
+  const nextBtn = document.getElementById('fc-next-btn');
+
+  function renderCard(idx) {
+    const card = cards[idx];
+    if (!card) return;
+
+    isFlipped = false;
+    cardFront?.classList.remove('hidden');
+    cardBack?.classList.add('hidden');
+
+    if (currentIdxEl) currentIdxEl.textContent = String(idx + 1);
+    if (frontTermEl) frontTermEl.textContent = card.term;
+    if (frontPosEl) frontPosEl.textContent = card.pos;
+
+    if (backTermEl) backTermEl.textContent = card.term;
+    if (backMeaningEnEl) backMeaningEnEl.textContent = card.meaning_en;
+    if (backMeaningHiEl) backMeaningHiEl.textContent = card.meaning_hi;
+    if (backMnemonicEl) backMnemonicEl.textContent = card.mnemonic;
+    if (backExampleEl) backExampleEl.textContent = `"${card.example}"`;
+  }
+
+  function toggleFlip() {
+    isFlipped = !isFlipped;
+    if (isFlipped) {
+      cardFront?.classList.add('hidden');
+      cardBack?.classList.remove('hidden');
+    } else {
+      cardFront?.classList.remove('hidden');
+      cardBack?.classList.add('hidden');
+    }
+  }
+
+  cardFlipper?.addEventListener('click', toggleFlip);
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+    renderCard(currentIndex);
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % cards.length;
+    renderCard(currentIndex);
+  });
+
+  // Spacebar to flip, Arrow keys to navigate
+  window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space' && (e.target === document.body || e.target === cardFlipper)) {
+      e.preventDefault();
+      toggleFlip();
+    } else if (e.code === 'ArrowRight') {
+      nextBtn?.click();
+    } else if (e.code === 'ArrowLeft') {
+      prevBtn?.click();
+    }
+  });
+
+  // Grade buttons auto-advance to next card
+  document.querySelectorAll('.fc-grade-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % cards.length;
+      renderCard(currentIndex);
+    });
+  });
+</script>

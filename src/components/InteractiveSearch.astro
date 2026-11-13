@@ -1,0 +1,314 @@
+---
+import resources from '../data/resources.json';
+import exams from '../data/exams.json';
+import subjects from '../data/subjects.json';
+---
+
+<div class="my-6">
+  
+  <!-- Search Bar & Controls -->
+  <div class="bg-white border border-[#E2DDD1] rounded-xl p-4 sm:p-6 shadow-sm mb-8">
+    <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+      
+      <!-- Search Input -->
+      <div class="relative w-full md:w-96">
+        <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#536471]">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="lib-search-input"
+          placeholder="Search topics, keywords, shortcuts, rules..."
+          class="w-full pl-10 pr-4 py-2.5 rounded-lg border border-[#E2DDD1] bg-[#FAF8F3] text-sm text-[#172633] placeholder-[#8A9BA8] focus:bg-white focus:border-[#147D78] focus:outline-none transition-colors"
+        />
+      </div>
+
+      <!-- Quick Filter Pills / Stats -->
+      <div class="flex items-center gap-3 w-full md:w-auto justify-between md:justify-end">
+        <span class="text-xs font-bold text-[#536471]" id="result-count-label">
+          Showing <span id="filtered-count" class="text-[#147D78]">{resources.length}</span> of {resources.length} resources
+        </span>
+        <button
+          type="button"
+          id="clear-all-filters-btn"
+          class="text-xs font-bold text-rose-600 hover:text-rose-800 underline px-2 py-1"
+        >
+          Clear filters
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Filter Facets -->
+    <div class="mt-5 pt-5 border-t border-[#E2DDD1] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- 1. Subject Select -->
+      <div>
+        <label for="filter-subject" class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1.5">Subject</label>
+        <select id="filter-subject" class="w-full p-2 text-xs font-semibold rounded border border-[#E2DDD1] bg-[#FAF8F3] text-[#172633] focus:border-[#147D78]">
+          <option value="all">All Subjects (6)</option>
+          {subjects.map(s => (
+            <option value={s.id}>{s.name_en}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- 2. Exam Select -->
+      <div>
+        <label for="filter-exam" class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1.5">Target Exam</label>
+        <select id="filter-exam" class="w-full p-2 text-xs font-semibold rounded border border-[#E2DDD1] bg-[#FAF8F3] text-[#172633] focus:border-[#147D78]">
+          <option value="all">All Exam Categories</option>
+          {exams.map(e => (
+            <option value={e.slug}>{e.name_en}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- 3. Learning Mode -->
+      <div>
+        <label for="filter-mode" class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1.5">Learning Mode</label>
+        <select id="filter-mode" class="w-full p-2 text-xs font-semibold rounded border border-[#E2DDD1] bg-[#FAF8F3] text-[#172633] focus:border-[#147D78]">
+          <option value="all">All Modes (01, 02, 03)</option>
+          <option value="Beginner">01 — Beginner Foundation</option>
+          <option value="Intermediate">02 — Intermediate Exam Level</option>
+          <option value="Revision">03 — Revision & Recall</option>
+        </select>
+      </div>
+
+      <!-- 4. Access Tier -->
+      <div>
+        <label for="filter-access" class="block text-xs font-bold uppercase tracking-wider text-[#536471] mb-1.5">Access Tier</label>
+        <select id="filter-access" class="w-full p-2 text-xs font-semibold rounded border border-[#E2DDD1] bg-[#FAF8F3] text-[#172633] focus:border-[#147D78]">
+          <option value="all">All Tiers</option>
+          <option value="Free">Free Core Library</option>
+          <option value="Premium">Premium Weekly Drops</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cards Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resources-grid">
+    {resources.map((res) => (
+      <article
+        class="editorial-card rounded-xl p-5 sm:p-6 flex flex-col justify-between bg-white resource-card"
+        data-title={res.title_en.toLowerCase() + ' ' + res.title_hi}
+        data-subject={res.subjectId}
+        data-exams={res.examTags.map(t => t.toLowerCase()).join(',')}
+        data-modes={res.modes.join(',')}
+        data-access={res.access}
+        data-slug={res.slug}
+      >
+        <div>
+          <!-- Top Card Meta -->
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">
+              {res.subjectName}
+            </span>
+            <div class="flex items-center gap-1.5">
+              <span class={`text-[11px] font-extrabold px-2 py-0.5 rounded ${res.access === 'Free' ? 'bg-[#D7EF72]/40 text-[#172633]' : 'bg-[#D98D45]/20 text-[#D98D45]'}`}>
+                {res.access === 'Free' ? 'Free Core' : 'Premium'}
+              </span>
+              <button
+                type="button"
+                class="bookmark-card-btn p-1 text-[#536471] hover:text-[#147D78]"
+                data-slug={res.slug}
+                title="Bookmark for quick review"
+              >
+                <svg class="w-4 h-4 bookmark-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Title -->
+          <h3 class="font-heading font-extrabold text-lg text-[#172633] hover:text-[#147D78] transition-colors leading-snug">
+            <a href={`/library/${res.slug}/`}>
+              <span data-lang="en">{res.title_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{res.title_hi}</span>
+            </a>
+          </h3>
+
+          <!-- Summary -->
+          <p class="text-xs text-[#536471] mt-2.5 leading-relaxed line-clamp-3">
+            <span data-lang="en">{res.summary_en}</span>
+            <span data-lang="hi" class="hidden font-hindi">{res.summary_hi}</span>
+          </p>
+
+          <!-- Exam Tags -->
+          <div class="mt-4 flex flex-wrap gap-1">
+            {res.examTags.map(tag => (
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-[#FAF8F3] border border-[#E2DDD1] text-[#536471]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="mt-6 pt-4 border-t border-[#E2DDD1] flex items-center justify-between text-xs text-[#536471]">
+          <span class="flex items-center gap-1 font-medium">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            {res.estimatedMinutes} mins study
+          </span>
+          <a
+            href={`/library/${res.slug}/`}
+            class="font-bold text-[#147D78] hover:text-[#116662] flex items-center gap-1"
+          >
+            Study Guide →
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <!-- Empty Search State -->
+  <div id="no-results-state" class="hidden my-12 text-center p-12 rounded-xl bg-white border border-[#E2DDD1]">
+    <div class="w-12 h-12 rounded-full bg-[#FAF8F3] border border-[#E2DDD1] flex items-center justify-center mx-auto text-[#536471] mb-3">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </div>
+    <h4 class="font-heading font-bold text-base text-[#172633]">No resources found</h4>
+    <p class="text-xs text-[#536471] mt-1 max-w-sm mx-auto">
+      No resources matched your combined filter criteria. Try clearing some filters or searching for terms like "percentage", "inequality", or "monetary".
+    </p>
+    <button
+      type="button"
+      id="empty-clear-btn"
+      class="mt-4 px-4 py-2 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold transition-colors"
+    >
+      Clear All Filters
+    </button>
+  </div>
+
+</div>
+
+<script>
+  const searchInput = document.getElementById('lib-search-input') as HTMLInputElement;
+  const subjectSelect = document.getElementById('filter-subject') as HTMLSelectElement;
+  const examSelect = document.getElementById('filter-exam') as HTMLSelectElement;
+  const modeSelect = document.getElementById('filter-mode') as HTMLSelectElement;
+  const accessSelect = document.getElementById('filter-access') as HTMLSelectElement;
+  const clearBtn = document.getElementById('clear-all-filters-btn');
+  const emptyClearBtn = document.getElementById('empty-clear-btn');
+  
+  const cards = document.querySelectorAll('.resource-card');
+  const countLabel = document.getElementById('filtered-count');
+  const emptyState = document.getElementById('no-results-state');
+
+  function filterResources() {
+    const q = (searchInput?.value || '').trim().toLowerCase();
+    const subject = subjectSelect?.value || 'all';
+    const exam = examSelect?.value || 'all';
+    const mode = modeSelect?.value || 'all';
+    const access = accessSelect?.value || 'all';
+
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const el = card as HTMLElement;
+      const title = el.getAttribute('data-title') || '';
+      const cSubject = el.getAttribute('data-subject') || '';
+      const cExams = el.getAttribute('data-exams') || '';
+      const cModes = el.getAttribute('data-modes') || '';
+      const cAccess = el.getAttribute('data-access') || '';
+
+      const matchQuery = !q || title.includes(q);
+      const matchSubject = subject === 'all' || cSubject.includes(subject.replace('subject-', ''));
+      const matchExam = exam === 'all' || cExams.includes(exam);
+      const matchMode = mode === 'all' || cModes.includes(mode);
+      const matchAccess = access === 'all' || cAccess.toLowerCase() === access.toLowerCase();
+
+      if (matchQuery && matchSubject && matchExam && matchMode && matchAccess) {
+        el.style.display = '';
+        visibleCount++;
+      } else {
+        el.style.display = 'none';
+      }
+    });
+
+    if (countLabel) countLabel.textContent = String(visibleCount);
+
+    if (visibleCount === 0) {
+      emptyState?.classList.remove('hidden');
+    } else {
+      emptyState?.classList.add('hidden');
+    }
+  }
+
+  function resetFilters() {
+    if (searchInput) searchInput.value = '';
+    if (subjectSelect) subjectSelect.value = 'all';
+    if (examSelect) examSelect.value = 'all';
+    if (modeSelect) modeSelect.value = 'all';
+    if (accessSelect) accessSelect.value = 'all';
+    filterResources();
+  }
+
+  searchInput?.addEventListener('input', filterResources);
+  subjectSelect?.addEventListener('change', filterResources);
+  examSelect?.addEventListener('change', filterResources);
+  modeSelect?.addEventListener('change', filterResources);
+  accessSelect?.addEventListener('change', filterResources);
+
+  clearBtn?.addEventListener('click', resetFilters);
+  emptyClearBtn?.addEventListener('click', resetFilters);
+
+  // Bookmark toggle on cards
+  function updateCardBookmarkState() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('exampath_bookmarks') || '[]');
+      document.querySelectorAll('.bookmark-card-btn').forEach((btn) => {
+        const slug = btn.getAttribute('data-slug');
+        const icon = btn.querySelector('.bookmark-icon');
+        if (slug && saved.includes(slug)) {
+          btn.classList.add('text-[#147D78]');
+          icon?.setAttribute('fill', 'currentColor');
+        } else {
+          btn.classList.remove('text-[#147D78]');
+          icon?.setAttribute('fill', 'none');
+        }
+      });
+    } catch {}
+  }
+
+  document.querySelectorAll('.bookmark-card-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const slug = btn.getAttribute('data-slug');
+      if (!slug) return;
+
+      try {
+        let saved = JSON.parse(localStorage.getItem('exampath_bookmarks') || '[]');
+        if (saved.includes(slug)) {
+          saved = saved.filter((s: string) => s !== slug);
+        } else {
+          saved.push(slug);
+        }
+        localStorage.setItem('exampath_bookmarks', JSON.stringify(saved));
+        updateCardBookmarkState();
+        
+        // Update header count badge if available
+        const badge = document.getElementById('bookmarks-count-badge');
+        if (badge) {
+          if (saved.length > 0) {
+            badge.textContent = String(saved.length);
+            badge.classList.remove('hidden');
+          } else {
+            badge.classList.add('hidden');
+          }
+        }
+      } catch {}
+    });
+  });
+
+  updateCardBookmarkState();
+</script>

@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import learningPaths from '../../data/learning-paths.json';
+import resources from '../../data/resources.json';
+
+const path = learningPaths.find(p => p.slug === 'revision')!;
+const matchedResources = resources.filter(r => path.curated_resources.includes(r.slug));
+---
+
+<BaseLayout
+  title="03 — Revision & Active Recall Path | ExamPath Lab"
+  description="Retain facts, vocabulary, and banking circulars permanently through desi mnemonics, active recall, and spaced repetition."
+  breadcrumbs={[
+    { label: 'Study Paths', href: '/paths/beginner/' },
+    { label: '03 — Revision' }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Path Header -->
+    <div class="rounded-2xl p-6 sm:p-10 bg-white border border-[#E2DDD1] shadow-sm mb-10">
+      <div class="font-mono font-bold text-3xl text-[#D98D45] mb-2">{path.number}</div>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633]">
+        <span data-lang="en">{path.title_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{path.title_hi}</span>
+      </h1>
+      <p class="font-heading font-semibold text-base text-[#D98D45] mt-2">
+        <span data-lang="en">{path.subtitle_en}</span>
+        <span data-lang="hi" class="hidden font-hindi">{path.subtitle_hi}</span>
+      </p>
+
+      <div class="mt-6 pt-6 border-t border-[#E2DDD1] space-y-2 text-xs text-[#172633]">
+        <div class="font-bold uppercase tracking-wider text-[#536471]">Long-Term Retention Protocols:</div>
+        <ul class="space-y-1.5">
+          {path.features_en.map((feat, idx) => (
+            <li class="flex items-start gap-2">
+              <span class="text-[#D98D45] font-bold">✓</span>
+              <span data-lang="en">{feat}</span>
+              <span data-lang="hi" class="hidden font-hindi">{path.features_hi[idx]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-[#E2DDD1] flex flex-wrap gap-3">
+        <a
+          href="/practice/"
+          class="px-5 py-2.5 rounded-lg bg-[#D98D45] hover:bg-[#C27932] text-white text-xs font-bold transition-colors flex items-center gap-2"
+        >
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          Launch Interactive Flashcard Drill Room →
+        </a>
+      </div>
+    </div>
+
+    <!-- Curated Recall Modules -->
+    <div class="space-y-6 mb-12">
+      <div class="flex items-center justify-between">
+        <h2 class="font-heading font-extrabold text-2xl text-[#172633]">
+          Active Recall Decks & Mnemonic Guides
+        </h2>
+        <span class="text-xs font-bold text-[#D98D45] bg-[#FDF4EB] px-3 py-1 rounded-full">
+          Memory hooks for zero forgetting
+        </span>
+      </div>
+
+      {matchedResources.map((res, stepIdx) => (
+        <div class="editorial-card rounded-xl p-6 bg-white border border-[#E2DDD1] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-start gap-4">
+            <span class="w-8 h-8 rounded-full bg-[#D98D45] text-white font-bold text-sm flex items-center justify-center shrink-0 mt-0.5">
+              0{stepIdx + 1}
+            </span>
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-[11px] font-bold uppercase tracking-wider text-[#D98D45]">
+                  {res.subjectName}
+                </span>
+                <span class="text-xs text-[#536471]">⏱ {res.estimatedMinutes} mins</span>
+              </div>
+              <h3 class="font-heading font-bold text-lg text-[#172633]">
+                <a href={`/library/${res.slug}/`} class="hover:text-[#D98D45]">
+                  <span data-lang="en">{res.title_en}</span>
+                  <span data-lang="hi" class="hidden font-hindi">{res.title_hi}</span>
+                </a>
+              </h3>
+              <p class="text-xs text-[#536471] mt-1.5 leading-relaxed line-clamp-2">
+                <span data-lang="en">{res.summary_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{res.summary_hi}</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="shrink-0 sm:self-center">
+            <a
+              href={`/library/${res.slug}/`}
+              class="px-4 py-2 rounded-lg bg-[#D98D45] hover:bg-[#C27932] text-white text-xs font-bold inline-block text-center transition-colors"
+            >
+              Start Recall Drill →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation between paths -->
+    <div class="flex items-center justify-between pt-6 border-t border-[#E2DDD1] text-xs font-bold">
+      <a href="/paths/intermediate/" class="text-[#536471] hover:underline flex items-center gap-1">
+        ← Previous: 02 — Intermediate Exam-Level Path
+      </a>
+      <a href="/practice/" class="text-[#D98D45] hover:underline flex items-center gap-1">
+        Drill Room: Practice & Recall →
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

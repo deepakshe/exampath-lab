@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Privacy Policy (Owner Draft) — ExamPath Lab"
+  description="How ExamPath Lab handles user data, local storage preferences, and communication privacy."
+  breadcrumbs={[
+    { label: 'Legal' },
+    { label: 'Privacy Policy' }
+  ]}
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 mb-8">
+      <strong>Owner-Review Working Draft:</strong> Informational draft detailing local storage and communication handling during the pilot phase.
+    </div>
+
+    <h1 class="font-heading font-extrabold text-3xl text-[#172633] mb-6">
+      Privacy Policy
+    </h1>
+
+    <div class="prose prose-sm text-[#536471] space-y-6 text-xs sm:text-sm leading-relaxed">
+      <section>
+        <h2 class="font-heading font-bold text-base text-[#172633]">1. Information Collection</h2>
+        <p>ExamPath Lab operates a static, privacy-first learning environment. In Version 1.0 (MVP), we do not maintain user accounts, require login credentials, or store tracking cookies on your device.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading font-bold text-base text-[#172633]">2. Local Storage Preferences</h2>
+        <p>To deliver an instant, seamless experience, your bilingual language preference (English vs हिंदी) and saved study bookmarks are stored locally on your device within your browser's <code>localStorage</code>. This data never leaves your device and is never transmitted to any external marketing server.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading font-bold text-base text-[#172633]">3. Communication Data</h2>
+        <p>When you contact our editorial desk via email or WhatsApp regarding pilot study packs or mentor questions, we retain your communication history solely to provide support and deliver verified materials. We never sell, rent, or trade student contact information with third-party coaching institutions.</p>
+      </section>
+
+      <section>
+        <h2 class="font-heading font-bold text-base text-[#172633]">4. Hosting & Infrastructure</h2>
+        <p>This static website is deployed on Cloudflare Pages. Cloudflare may process basic server request logs (IP addresses, user agents) strictly for performance caching and DDoS security protection.</p>
+      </section>
+    </div>
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "q-quant-perc-01",
+    "subjectId": "quant",
+    "topicId": "percentage",
+    "examTags": ["banking", "ssc", "railways"],
+    "level": "Beginner",
+    "prompt_en": "If the price of petrol increases by 25%, by what percentage must a household reduce its petrol consumption so that the total expenditure remains unchanged?",
+    "prompt_hi": "यदि पेट्रोल की कीमत में 25% की वृद्धि होती है, तो एक परिवार को अपनी पेट्रोल की खपत में कितने प्रतिशत की कमी करनी होगी ताकि कुल खर्च अपरिवर्तित रहे?",
+    "options": [
+      { "id": "A", "text": "20%" },
+      { "id": "B", "text": "25%" },
+      { "id": "C", "text": "16.66%" },
+      { "id": "D", "text": "30%" }
+    ],
+    "correctOptionId": "A",
+    "targetTimeSeconds": 25,
+    "beginner_solution_en": "Assume Initial Price = ₹100, Initial Consumption = 100 units. Initial Expenditure = 100 × 100 = ₹10,000.\nNew Price = ₹125. Since expenditure must remain ₹10,000, New Consumption = 10,000 / 125 = 80 units.\nReduction = 100 - 80 = 20 units. Percentage reduction = (20 / 100) × 100 = 20%.",
+    "beginner_solution_hi": "माना प्रारंभिक मूल्य = ₹100, प्रारंभिक खपत = 100 इकाई। कुल प्रारंभिक खर्च = 100 × 100 = ₹10,000।\nनया मूल्य = ₹125। खर्च अपरिवर्तित रखने के लिए, नई खपत = 10,000 / 125 = 80 इकाई।\nकमी = 100 - 80 = 20 इकाई। प्रतिशत कमी = (20 / 100) × 100 = 20%।",
+    "fast_solution_en": "Fraction Rule: 25% increase = +1/4.\nWhen price increases by +a/b, consumption must decrease by a/(a+b) to keep expenditure constant.\nHere, a = 1, b = 4.\nRequired reduction = 1/(1+4) = 1/5 = 20% in 5 seconds flat!",
+    "fast_solution_hi": "भिन्न नियम: 25% वृद्धि = +1/4।\nजब मूल्य +a/b बढ़ता है, तो खर्च स्थिर रखने के लिए खपत में a/(a+b) की कमी होती है।\nयहाँ a = 1, b = 4 है।\nअपेक्षित कमी = 1/(1+4) = 1/5 = 20% (बिना पेन उठाए!)।",
+    "common_trap": "Students mistakenly answer 25% thinking an equal percentage decrease offsets the increase. In reality, the percentage decrease is applied to a higher base (125), making the required percentage 20%.",
+    "reviewStatus": "verified",
+    "reviewedAt": "2026-11-10"
+  },
+  {
+    "id": "q-quant-perc-02",
+    "subjectId": "quant",
+    "topicId": "percentage",
+    "examTags": ["banking", "ssc"],
+    "level": "Intermediate",
+    "prompt_en": "The population of a town increases by 10% in the first year and decreases by 10% in the second year. If the initial population was 50,000, what is the net population at the end of two years?",
+    "prompt_hi": "एक शहर की जनसंख्या पहले वर्ष 10% बढ़ती है और दूसरे वर्ष 10% घटती है। यदि प्रारंभिक जनसंख्या 50,000 थी, तो दो वर्षों के अंत में शुद्ध जनसंख्या क्या होगी?",
+    "options": [
+      { "id": "A", "text": "50,000 (No change)" },
+      { "id": "B", "text": "49,500 (1% net decrease)" },
+      { "id": "C", "text": "49,000 (2% net decrease)" },
+      { "id": "D", "text": "50,500 (1% net increase)" }
+    ],
+    "correctOptionId": "B",
+    "targetTimeSeconds": 20,
+    "beginner_solution_en": "Year 1: 50,000 + 10% of 50,000 = 50,000 + 5,000 = 55,000.\nYear 2: 55,000 - 10% of 55,000 = 55,000 - 5,500 = 49,500.",
+    "beginner_solution_hi": "प्रथम वर्ष: 50,000 + 5,000 = 55,000।\nद्वितीय वर्ष: 55,000 - 5,500 (55,000 का 10%) = 49,500।",
+    "fast_solution_en": "Successive Percentage Formula: Net % change = +x - y - (x×y)/100.\nHere: +10 - 10 - (10×10)/100 = -1% (Always a net loss of x²/100 %).\n1% of 50,000 = 500.\nFinal population = 50,000 - 500 = 49,500.",
+    "fast_solution_hi": "सक्सेसिव प्रतिशत सूत्र: शुद्ध % परिवर्तन = x - y - (x×y)/100 = 10 - 10 - 1 = -1%।\n50,000 का 1% = 500।\nअंतिम जनसंख्या = 50,000 - 500 = 49,500।",
+    "common_trap": "Assuming +10% and -10% cancel out to 0% change. Since the base increases in year 1, the 10% deduction in year 2 is larger than the 10% addition in year 1.",
+    "reviewStatus": "verified",
+    "reviewedAt": "2026-11-10"
+  },
+  {
+    "id": "q-reas-ineq-01",
+    "subjectId": "reasoning",
+    "topicId": "inequality",
+    "examTags": ["banking", "ssc", "railways"],
+    "level": "Beginner",
+    "prompt_en": "Statements: P ≥ Q > R = S ≤ T\nConclusions:\nI. P > S\nII. R ≤ T",
+    "prompt_hi": "कथन: P ≥ Q > R = S ≤ T\nनिष्कर्ष:\nI. P > S\nII. R ≤ T",
+    "options": [
+      { "id": "A", "text": "Only Conclusion I follows" },
+      { "id": "B", "text": "Only Conclusion II follows" },
+      { "id": "C", "text": "Both Conclusions I and II follow" },
+      { "id": "D", "text": "Neither Conclusion I nor II follows" }
+    ],
+    "correctOptionId": "C",
+    "targetTimeSeconds": 15,
+    "beginner_solution_en": "For Conclusion I (P > S): Follow the path from P to S: P ≥ Q > R = S. The path contains ≥, >, and =. Because there is at least one strict greater-than (>) sign and all signs face right, P > S is definitely true.\nFor Conclusion II (R ≤ T): From R to T: R = S ≤ T. Since R equals S, we substitute to get R ≤ T. Hence Conclusion II is definitely true.",
+    "beginner_solution_hi": "निष्कर्ष I (P > S) के लिए: P से S का मार्ग: P ≥ Q > R = S। मार्ग में कम से कम एक निश्चित बड़ा (>) चिन्ह है और सभी चिन्ह एक ही दिशा में हैं, अतः P > S सत्य है।\nनिष्कर्ष II (R ≤ T) के लिए: R से T का मार्ग: R = S ≤ T। चूँकि R = S है, अतः R ≤ T निश्चित सत्य है। दोनों निष्कर्ष सही हैं।",
+    "fast_solution_en": "King/Soldier Priority Rule:\n1. '>' (King) beats '≥' (Soldier) and '=' (Citizen).\nBetween P and S, King '>' is present → P > S holds.\nBetween R and T, Soldier '≤' with '=' → R ≤ T holds. Instantly Option C.",
+    "fast_solution_hi": "प्राथमिकता नियम: '>' (राजा) हमेशा '≥' (सैनिक) और '=' (नागरिक) से ऊपर होता है।\nP और S के बीच राजा '>' मौजूद है, इसलिए P > S सही है। R और T के बीच '≤' मौजूद है, अतः R ≤ T सही है। दोनों सत्य हैं।",
+    "common_trap": "Getting confused when '=' appears in the chain. Remember that '=' acts like a transparent bridge and passes through the relationship unchanged.",
+    "reviewStatus": "verified",
+    "reviewedAt": "2026-11-10"
+  },
+  {
+    "id": "q-reas-ineq-02",
+    "subjectId": "reasoning",
+    "topicId": "inequality",
+    "examTags": ["banking"],
+    "level": "Intermediate",
+    "prompt_en": "Statements: A > B ≥ C < D ≤ E\nConclusions:\nI. A > D\nII. A ≤ D",
+    "prompt_hi": "कथन: A > B ≥ C < D ≤ E\nनिष्कर्ष:\nI. A > D\nII. A ≤ D",
+    "options": [
+      { "id": "A", "text": "Only Conclusion I follows" },
+      { "id": "B", "text": "Only Conclusion II follows" },
+      { "id": "C", "text": "Either Conclusion I or II follows" },
+      { "id": "D", "text": "Neither Conclusion I nor II follows" }
+    ],
+    "correctOptionId": "C",
+    "targetTimeSeconds": 18,
+    "beginner_solution_en": "Inspect path between A and D: A > B ≥ C < D. At element C, the signs reverse direction (≥ faces left/neutral, but < faces right). This represents an opposite sign barrier (blocked gate).\nWhen signs are opposite between two elements, no direct definite relation exists between A and D. Thus both individual conclusions I (A > D) and II (A ≤ D) are individually false.\nHowever, between any two independent real numbers, either A > D or A ≤ D (which covers both A < D and A = D) MUST be true. Since all three relational possibilities (> , < , =) are covered, this forms a complementary 'Either-Or' pair.",
+    "beginner_solution_hi": "A और D के बीच का मार्ग: A > B ≥ C < D। तत्व C पर चिन्हों की दिशा बदल जाती है (विपरीत चिन्ह बाधा)।\nविपरीत चिन्ह होने पर A और D के बीच कोई निश्चित संबंध नहीं बताया जा सकता। इसलिए दोनों निष्कर्ष व्यक्तिगत रूप से असत्य हैं।\nपरंतु दो राशियों के बीच या तो A > D होगा या A ≤ D (जिसमें < और = दोनों शामिल हैं)। तीनों चिन्ह मौजूद होने के कारण यह 'या तो I या II' (Either-Or) का नियम बनाता है।",
+    "fast_solution_en": "Either-Or 3-Sign Check for Opposite Signs:\n1. Both elements same (A and D)? Yes.\n2. Both individually indeterminate? Yes (opposite signs at C).\n3. Do both conclusions together cover all 3 signs (> , < , =)? Yes (I has '>', II has '<' and '=').\n→ Instant Either-Or (Option C).",
+    "fast_solution_hi": "Either-Or 3-साइन चेक: 1. दोनों तत्व समान हैं? हाँ (A और D)। 2. दोनों व्यक्तिगत रूप से अनिश्चित हैं? हाँ। 3. क्या तीनों चिन्ह (> , < , =) शामिल हैं? हाँ। अतः 'Either-Or' सही उत्तर है।",
+    "common_trap": "Selecting 'Neither Nor' blindly just because signs are opposite, forgetting to check if the two statements together cover all 3 comparative outcomes.",
+    "reviewStatus": "verified",
+    "reviewedAt": "2026-11-10"
+  },
+  {
+    "id": "q-eng-vocab-01",
+    "subjectId": "english",
+    "topicId": "vocabulary",
+    "examTags": ["banking", "ssc", "defence"],
+    "level": "Beginner",
+    "prompt_en": "Choose the word most SIMILAR in meaning to 'ABERRATION' as used in formal editorial contexts:",
+    "prompt_hi": "औपचारिक संपादकीय संदर्भों में प्रयुक्त 'ABERRATION' के सबसे निकटतम समानार्थक शब्द का चयन करें:",
+    "options": [
+      { "id": "A", "text": "Conformity" },
+      { "id": "B", "text": "Anomaly" },
+      { "id": "C", "text": "Adherence" },
+      { "id": "D", "text": "Approval" }
+    ],
+    "correctOptionId": "B",
+    "targetTimeSeconds": 15,
+    "beginner_solution_en": "Aberration (Noun): A departure from what is normal, usual, or expected, typically an unwelcome one. Synonyms: anomaly, divergence, irregularity, deviation.\nExample: 'The sharp drop in quarterly GDP was treated as a temporary aberration rather than a systemic downturn.'\nOptions A (Conformity) and C (Adherence) are exact antonyms.",
+    "beginner_solution_hi": "Aberration (संज्ञा): सामान्य या अपेक्षित मार्ग से भटकाव, असामान्यता। समानार्थक: anomaly, divergence, deviation.\nउदाहरण: 'तिमाही जीडीपी में अचानक गिरावट को एक अस्थायी विचलन (aberration) माना गया, न कि कोई दीर्घकालिक मंदी।'\nविकल्प A और C इसके सटीक विलोम हैं।",
+    "fast_solution_en": "Desi Mnemonic Hook: 'AB' (Away) + 'ERR' (Error/Bhatakna) → Jo normal raaste se error karke bhatak jaye = Anomaly / Deviation.",
+    "fast_solution_hi": "देसी निमोनिक ट्रिक: 'AB' (दूर) + 'ERR' (Error / गलती से भटक जाना) → जो सामान्य रास्ते से भटक जाए यानी Anomaly / Deviation.",
+    "common_trap": "Confusing Aberration (deviation) with Abhorrence (strong hatred).",
+    "reviewStatus": "verified",
+    "reviewedAt": "2026-11-10"
+  }
+]

@@ -1,0 +1,81 @@
+[
+  {
+    "id": "path-beginner",
+    "slug": "beginner",
+    "number": "01",
+    "title_en": "Beginner Foundation Path",
+    "title_hi": "शुरुआती बुनियादी मार्ग",
+    "subtitle_en": "Start from absolute zero with crystal clear bilingual explanations.",
+    "subtitle_hi": "द्विभाषी स्पष्टता के साथ बिल्कुल शून्य से शुरुआत करें।",
+    "color": "#147D78",
+    "features_en": [
+      "Prerequisite concepts broken down before jumping into questions",
+      "Bilingual step-by-step worked solutions",
+      "No intimidating formulas without conceptual derivation",
+      "Guided practice drills with error prevention tips"
+    ],
+    "features_hi": [
+      "प्रश्नों पर जाने से पहले बुनियादी अवधारणाओं का स्पष्टीकरण",
+      "द्विभाषी चरण-दर-चरण हल किए गए उदाहरण",
+      "बिना समझे भारी फॉर्मूलों से बचाव",
+      "गलती रोकथाम सुझावों के साथ निर्देशित अभ्यास"
+    ],
+    "curated_resources": [
+      "percentage-foundation-and-shortcuts",
+      "inequality-reasoning-speed-rules",
+      "vocabulary-recall-mnemonic-pack-1"
+    ]
+  },
+  {
+    "id": "path-intermediate",
+    "slug": "intermediate",
+    "number": "02",
+    "title_en": "Intermediate Exam-Level Path",
+    "title_hi": "मध्यवर्ती परीक्षा-स्तरीय मार्ग",
+    "subtitle_en": "Learn standard vs shortcut methods, avoid exam traps, and build speed.",
+    "subtitle_hi": "मानक बनाम शॉर्टकट विधियां सीखें, परीक्षा के जालों से बचें और गति बढ़ाएं।",
+    "color": "#2B4C7E",
+    "features_en": [
+      "Side-by-side comparison: School Method vs 15-Second Exam Method",
+      "Mathematically verified shortcut conditions (when NOT to use them)",
+      "Misleading option traps analyzed systematically",
+      "Timed benchmark expectations for actual government exams"
+    ],
+    "features_hi": [
+      "आमने-सामने तुलना: स्कूल विधि बनाम 15-सेकंड परीक्षा तकनीक",
+      "शॉर्टकट लागू होने की सटीक शर्तें (कब उपयोग नहीं करना है)",
+      "भ्रामक विकल्पों के जाल का व्यवस्थित विश्लेषण",
+      "वास्तविक सरकारी परीक्षाओं के लिए समय सीमा"
+    ],
+    "curated_resources": [
+      "percentage-foundation-and-shortcuts",
+      "inequality-reasoning-speed-rules"
+    ]
+  },
+  {
+    "id": "path-revision",
+    "slug": "revision",
+    "number": "03",
+    "title_en": "Revision & Active Recall Path",
+    "title_hi": "रिवीज़न और एक्टिव रीकॉल मार्ग",
+    "subtitle_en": "Lock concepts in long-term memory using flashcards, mnemonics, and spaced recall.",
+    "subtitle_hi": "फ्लैशकार्ड, निमोनिक्स और एक्टिव रीकॉल से तथ्यों को दीर्घकालिक स्मृति में संजोएं।",
+    "color": "#D98D45",
+    "features_en": [
+      "Desi mnemonic hooks connecting complex facts into single vivid mental images",
+      "Interactive 3D flashcard decks with self-grading (Again, Hard, Good, Easy)",
+      "Formula quick-reference sheets and print-ready summary sheets",
+      "Rapid-fire mistake review drills to eliminate negative marking"
+    ],
+    "features_hi": [
+      "जटिल तथ्यों को एक जीवंत मानसिक छवि में जोड़ने वाली देसी निमोनिक ट्रिक्स",
+      "स्व-मूल्यांकन (Again, Hard, Good, Easy) के साथ इंटरएक्टिव 3D फ्लैशकार्ड",
+      "त्वरित संदर्भ सूत्र और प्रिंट-तैयार सारांश शीट",
+      "नकारात्मक अंकन को खत्म करने के लिए रैपिड-फायर अभ्यास"
+    ],
+    "curated_resources": [
+      "vocabulary-recall-mnemonic-pack-1",
+      "rbi-monetary-policy-framework-sample"
+    ]
+  }
+]

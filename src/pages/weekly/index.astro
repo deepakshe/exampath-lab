@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import weeklyPacks from '../../data/weekly-packs.json';
+---
+
+<BaseLayout
+  title="Weekly Learning Drops — ExamPath Lab"
+  description="Concentrated, high-yield study packs published weekly for Indian government exam aspirants."
+  breadcrumbs={[{ label: 'Weekly Drops' }]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-3xl mb-10">
+      <span class="field-badge text-[#D98D45] border-[#D98D45]/30 bg-[#FDF4EB]">Weekly Editorial Releases</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        Weekly High-Yield Learning Drops
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        Stop drowning in 500-page unfocused PDFs. Our weekly drops deliver tightly curated, fact-checked modules designed to be completed in one weekend.
+      </p>
+    </div>
+
+    <!-- Free Foundation Banner -->
+    <div class="rounded-2xl p-6 sm:p-8 bg-[#E8F3F2] border border-[#BADBD8] mb-12 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div>
+        <span class="text-xs font-extrabold uppercase tracking-wider text-[#147D78] bg-white px-2.5 py-1 rounded">
+          Core Free Resource
+        </span>
+        <h2 class="font-heading font-extrabold text-2xl text-[#172633] mt-2">
+          3-Day Common Foundation Challenge
+        </h2>
+        <p class="text-xs sm:text-sm text-[#536471] mt-1 max-w-xl">
+          Essential fractions, Latin vocabulary roots, and inequality logic rules for all government exams. Instant free printable HTML & PDF.
+        </p>
+      </div>
+      <a
+        href="/downloads/free/Common-Foundation-Challenge-Day1-3.html"
+        target="_blank"
+        class="px-5 py-3 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold text-center shrink-0 transition-colors"
+      >
+        Download Free Field Guide →
+      </a>
+    </div>
+
+    <!-- Weekly Drops Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {weeklyPacks.map((pack) => (
+        <div class="editorial-card rounded-2xl p-6 bg-white border border-[#E2DDD1] flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3 text-xs font-bold">
+              <span class="text-[#536471]">{pack.badge}</span>
+              <span class={`px-2 py-0.5 rounded text-[11px] font-extrabold ${pack.access === 'Free' ? 'bg-[#D7EF72]/40 text-[#172633]' : 'bg-[#D98D45]/20 text-[#D98D45]'}`}>
+                {pack.access === 'Free' ? 'Free Core' : `Pilot ₹${pack.price_inr}`}
+              </span>
+            </div>
+
+            <h2 class="font-heading font-extrabold text-lg text-[#172633] leading-snug">
+              <a href={`/weekly/${pack.slug}/`} class="hover:text-[#147D78] transition-colors">
+                <span data-lang="en">{pack.title_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{pack.title_hi}</span>
+              </a>
+            </h2>
+
+            <p class="text-xs text-[#536471] mt-2 leading-relaxed">
+              <span data-lang="en">{pack.summary_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{pack.summary_hi}</span>
+            </p>
+
+            <!-- Table of contents -->
+            <div class="mt-4 p-3 rounded-lg bg-[#FAF8F3] border border-[#E2DDD1] text-xs text-[#536471] space-y-1">
+              <div class="font-bold text-[#172633] text-[10px] uppercase tracking-wider mb-1">Pack Modules:</div>
+              {pack.table_of_contents.map((item) => (
+                <div class="flex items-start gap-1.5">
+                  <span class="text-[#147D78] font-bold">•</span>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[#E2DDD1] flex items-center justify-between text-xs">
+            <span class="text-[#536471] font-semibold">{pack.subject}</span>
+            <a
+              href={`/weekly/${pack.slug}/`}
+              class="font-bold text-[#147D78] hover:text-[#116662] flex items-center gap-1"
+            >
+              View Pack Details →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

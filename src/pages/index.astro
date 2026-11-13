@@ -1,0 +1,370 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import InteractiveQuiz from '../components/InteractiveQuiz.astro';
+import exams from '../data/exams.json';
+import subjects from '../data/subjects.json';
+import learningPaths from '../data/learning-paths.json';
+import weeklyPacks from '../data/weekly-packs.json';
+import questions from '../data/questions.json';
+
+const sampleQuiz = questions.slice(0, 2);
+---
+
+<BaseLayout title="ExamPath Lab — The Learning Field Guide | Indian Government Exams">
+  
+  <!-- HERO SECTION -->
+  <section class="border-b border-[#E2DDD1] bg-[#FAF8F3] py-16 sm:py-20 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        
+        <!-- Field Guide Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#147D78]/10 border border-[#147D78]/20 text-[#147D78] text-xs font-bold uppercase tracking-wider mb-6">
+          <span class="w-2 h-2 rounded-full bg-[#147D78]"></span>
+          <span>The Learning Field Guide</span>
+          <span class="text-[#536471]">· Free Core Library</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#172633] tracking-tight leading-[1.08]">
+          <span data-lang="en">YOUR LEARNING STARTS HERE.</span>
+          <span data-lang="hi" class="hidden font-hindi">आपकी व्यवस्थित तैयारी यहाँ शुरू होती है।</span>
+        </h1>
+
+        <!-- Subhead -->
+        <p class="font-heading font-semibold text-xl sm:text-2xl text-[#147D78] mt-4 tracking-tight">
+          <span data-lang="en">Study less scattered. Learn with a system.</span>
+          <span data-lang="hi" class="hidden font-hindi">बिना भटके सीखें। एक ठोस प्रणाली के साथ।</span>
+        </p>
+
+        <!-- Editorial Description -->
+        <p class="text-base sm:text-lg text-[#536471] mt-3 leading-relaxed max-w-2xl">
+          <span data-lang="en">
+            Understand concepts. Remember facts with desi mnemonics. Solve questions with verified shortcut laws. Build calm exam confidence.
+          </span>
+          <span data-lang="hi" class="hidden font-hindi">
+            अवधारणाओं को समझें। देसी निमोनिक्स से तथ्यों को याद रखें। सत्यापित शॉर्टकट नियमों से प्रश्नों को हल करें।
+          </span>
+        </p>
+
+        <!-- Hero Actions -->
+        <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href="/library/"
+            class="px-6 py-3.5 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white font-bold text-sm tracking-wide shadow-sm flex items-center justify-center gap-2 transition-all hover:translate-y-[-1px]"
+          >
+            <span data-lang="en">Explore Learning Library →</span>
+            <span data-lang="hi" class="hidden font-hindi">लाइब्रेरी एक्सप्लोर करें →</span>
+          </a>
+          <a
+            href="/downloads/free/Common-Foundation-Challenge-Day1-3.html"
+            target="_blank"
+            class="px-6 py-3.5 rounded-lg bg-white border border-[#E2DDD1] hover:border-[#147D78] text-[#172633] font-bold text-sm tracking-wide flex items-center justify-center gap-2 transition-colors"
+          >
+            <svg class="w-4 h-4 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span data-lang="en">Download 3-Day Foundation (Free)</span>
+            <span data-lang="hi" class="hidden font-hindi">3-दिवसीय फाउंडेशन गाइड (मुफ्त)</span>
+          </a>
+        </div>
+
+        <!-- Metric Anchors -->
+        <div class="mt-10 pt-8 border-t border-[#E2DDD1] grid grid-cols-3 gap-4 text-left">
+          <div>
+            <div class="font-heading font-black text-2xl text-[#172633]">100%</div>
+            <div class="text-xs text-[#536471] font-semibold mt-0.5">Verified Solutions</div>
+          </div>
+          <div>
+            <div class="font-heading font-black text-2xl text-[#147D78]">₹0</div>
+            <div class="text-xs text-[#536471] font-semibold mt-0.5">Free Core Library</div>
+          </div>
+          <div>
+            <div class="font-heading font-black text-2xl text-[#D98D45]">Bilingual</div>
+            <div class="text-xs text-[#536471] font-semibold mt-0.5">English + हिंदी</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CHOOSE YOUR EXAM SECTION -->
+  <section class="py-14 border-b border-[#E2DDD1]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#536471]">Exam Taxonomies</span>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633] mt-1">
+            Choose your target exam
+          </h2>
+        </div>
+        <a href="/exams/" class="text-xs font-bold text-[#147D78] hover:underline flex items-center gap-1">
+          View all categories →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3.5">
+        {exams.map((exam) => (
+          <a
+            href={`/exams/${exam.slug}/`}
+            class="editorial-card rounded-xl p-4 bg-white hover:border-[#147D78] flex flex-col justify-between group transition-all"
+          >
+            <div>
+              <span class="inline-block w-2.5 h-2.5 rounded-full mb-3" style={`background-color: ${exam.color}`}></span>
+              <div class="font-heading font-bold text-base text-[#172633] group-hover:text-[#147D78] transition-colors leading-tight">
+                <span data-lang="en">{exam.name_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{exam.name_hi}</span>
+              </div>
+              <div class="text-[11px] text-[#536471] mt-1 line-clamp-1">
+                {exam.exam_list.slice(0, 3).join(', ')}...
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-[#E2DDD1] flex items-center justify-between text-[11px] text-[#536471]">
+              <span class="font-semibold">{exam.active_resources_count} guides</span>
+              <span class="font-bold text-[#147D78] group-hover:translate-x-0.5 transition-transform">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CHOOSE HOW YOU WANT TO LEARN (3 MODES) -->
+  <section class="py-16 bg-[#FAF8F3] border-b border-[#E2DDD1]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Curated Pedagogical Modes</span>
+        <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+          Choose how you want to learn
+        </h2>
+        <p class="text-sm text-[#536471] mt-2">
+          Different exam stages require different cognitive tools. Pick your current state.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {learningPaths.map((path) => (
+          <div class="editorial-card rounded-2xl p-6 sm:p-8 bg-white border border-[#E2DDD1] flex flex-col justify-between relative overflow-hidden">
+            <div>
+              <!-- Large Monospace Number -->
+              <div class="font-mono font-bold text-3xl text-[#147D78] opacity-80 mb-2">
+                {path.number}
+              </div>
+              
+              <h3 class="font-heading font-extrabold text-xl text-[#172633]">
+                <span data-lang="en">{path.title_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{path.title_hi}</span>
+              </h3>
+              
+              <p class="text-xs text-[#536471] font-semibold mt-1">
+                <span data-lang="en">{path.subtitle_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{path.subtitle_hi}</span>
+              </p>
+
+              <!-- Feature Bullet Points -->
+              <ul class="mt-6 space-y-2.5 text-xs text-[#172633]">
+                {path.features_en.map((feat, fidx) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#147D78] font-bold mt-0.5">✓</span>
+                    <span data-lang="en">{feat}</span>
+                    <span data-lang="hi" class="hidden font-hindi">{path.features_hi[fidx]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="mt-8 pt-4 border-t border-[#E2DDD1]">
+              <a
+                href={`/paths/${path.slug}/`}
+                class="w-full py-2.5 rounded-lg border border-[#E2DDD1] hover:border-[#147D78] bg-[#FAF8F3] hover:bg-[#E8F3F2] text-[#172633] text-xs font-bold flex items-center justify-center gap-1 transition-colors"
+              >
+                Start Mode {path.number} Roadmap →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBJECT MATRIX SECTION -->
+  <section class="py-16 border-b border-[#E2DDD1]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-[#536471]">Subject Architecture</span>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633] mt-1">
+            Distinct Visual Identities Per Subject
+          </h2>
+        </div>
+        <a href="/subjects/" class="text-xs font-bold text-[#147D78] hover:underline flex items-center gap-1">
+          Explore all 6 subjects →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {subjects.map((sub) => (
+          <div class="editorial-card rounded-xl p-6 bg-white border border-[#E2DDD1] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded" style={`background-color: ${sub.bg_color}; color: ${sub.color}; border: 1px solid ${sub.border_color};`}>
+                  {sub.name_en}
+                </span>
+                <span class="text-xs text-[#536471] font-bold">{sub.active_count} guides</span>
+              </div>
+
+              <!-- Subject Tagline -->
+              <div class="font-heading font-bold text-sm text-[#172633]">
+                <span data-lang="en">{sub.tagline_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{sub.tagline_hi}</span>
+              </div>
+
+              <!-- Summary -->
+              <p class="text-xs text-[#536471] mt-2 leading-relaxed">
+                <span data-lang="en">{sub.summary_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{sub.summary_hi}</span>
+              </p>
+
+              <!-- Topic Pills -->
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                {sub.topics.slice(0, 3).map(top => (
+                  <span class="text-[10px] font-medium px-2 py-0.5 rounded bg-[#FAF8F3] border border-[#E2DDD1] text-[#536471]">
+                    {top}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="mt-6 pt-3 border-t border-[#E2DDD1] flex items-center justify-between text-xs">
+              <a href={`/subjects/${sub.slug}/`} class="font-bold text-[#147D78] hover:underline flex items-center gap-1">
+                Enter Subject Lab →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- THIS WEEK'S LEARNING DROPS -->
+  <section class="py-16 bg-[#FAF8F3] border-b border-[#E2DDD1]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+        <div>
+          <span class="field-badge text-[#D98D45] border-[#D98D45]/30 bg-[#FDF4EB]">Curated Releases</span>
+          <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633] mt-2">
+            This Week's Learning Drops
+          </h2>
+          <p class="text-xs sm:text-sm text-[#536471] mt-1">
+            Concentrated, high-yield study packs designed to be finished in 1 to 2 sittings.
+          </p>
+        </div>
+        <a href="/weekly/" class="text-xs font-bold text-[#147D78] hover:underline flex items-center gap-1">
+          Browse all drops archive →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {weeklyPacks.map((pack) => (
+          <div class="editorial-card rounded-xl p-6 bg-white border border-[#E2DDD1] flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs font-bold mb-3">
+                <span class="text-[#536471]">{pack.badge}</span>
+                <span class={`px-2 py-0.5 rounded text-[10px] uppercase tracking-wider ${pack.access === 'Free' ? 'bg-[#D7EF72]/40 text-[#172633]' : 'bg-[#D98D45]/20 text-[#D98D45]'}`}>
+                  {pack.access === 'Free' ? 'Free Core' : `Pilot ₹${pack.price_inr}`}
+                </span>
+              </div>
+
+              <h3 class="font-heading font-bold text-base text-[#172633] leading-snug">
+                <a href={`/weekly/${pack.slug}/`} class="hover:text-[#147D78]">
+                  <span data-lang="en">{pack.title_en}</span>
+                  <span data-lang="hi" class="hidden font-hindi">{pack.title_hi}</span>
+                </a>
+              </h3>
+
+              <p class="text-xs text-[#536471] mt-2 leading-relaxed">
+                <span data-lang="en">{pack.summary_en}</span>
+                <span data-lang="hi" class="hidden font-hindi">{pack.summary_hi}</span>
+              </p>
+
+              <!-- Table of contents preview -->
+              <div class="mt-4 p-3 rounded bg-[#FAF8F3] border border-[#E2DDD1] text-[11px] text-[#536471] space-y-1">
+                <div class="font-bold text-[#172633] text-[10px] uppercase tracking-wider">Pack Highlights:</div>
+                {pack.table_of_contents.slice(0, 3).map(item => (
+                  <div class="truncate">• {item}</div>
+                ))}
+              </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-[#E2DDD1] flex items-center justify-between text-xs">
+              <span class="text-[#536471] font-semibold">{pack.subject}</span>
+              <a href={`/weekly/${pack.slug}/`} class="font-bold text-[#147D78] hover:underline">
+                View Pack →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE INTERACTIVE CONCEPT PREVIEW (MCQ Drill) -->
+  <section class="py-16 border-b border-[#E2DDD1]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-6">
+        <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Interactive Concept Preview</span>
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633] mt-2">
+          Experience How ExamPath Lab Explains
+        </h2>
+        <p class="text-xs sm:text-sm text-[#536471] mt-1 max-w-xl mx-auto">
+          Test your conceptual understanding right now. Select an option below to reveal the beginner method, the exam speed shortcut, and the common trap!
+        </p>
+      </div>
+
+      <InteractiveQuiz questions={sampleQuiz} title="Sample Verification Drill" />
+    </div>
+  </section>
+
+  <!-- EDITORIAL STANDARDS & INTEGRITY SECTION -->
+  <section class="py-16 bg-[#FAF8F3]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading font-extrabold text-2xl sm:text-3xl text-[#172633]">
+          Our Four Non-Negotiable Editorial Standards
+        </h2>
+        <p class="text-xs sm:text-sm text-[#536471] mt-2">
+          We reject coaching gimmicks, clickbait countdowns, and fabricated selection claims.
+        </p>
+
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+          <div class="p-4 rounded-xl bg-white border border-[#E2DDD1]">
+            <div class="font-heading font-bold text-sm text-[#147D78]">1. Zero Fabricated Content</div>
+            <p class="text-xs text-[#536471] mt-1 leading-relaxed">
+              No made-up current affairs or unverified shortcuts. If a subject isn't fact-checked yet, we leave it marked coming soon rather than dumping AI slop.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-[#E2DDD1]">
+            <div class="font-heading font-bold text-sm text-[#147D78]">2. Mathematically Verified Answers</div>
+            <p class="text-xs text-[#536471] mt-1 leading-relaxed">
+              Every Quant formula and Reasoning deduction is cross-verified against foundational theorems with exact validity boundaries stated upfront.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-[#E2DDD1]">
+            <div class="font-heading font-bold text-sm text-[#147D78]">3. Honest ₹0 Free Core</div>
+            <p class="text-xs text-[#536471] mt-1 leading-relaxed">
+              Foundational concept guides, formula summaries, and essential drills are 100% free forever without dark patterns or locked paywalls.
+            </p>
+          </div>
+          <div class="p-4 rounded-xl bg-white border border-[#E2DDD1]">
+            <div class="font-heading font-bold text-sm text-[#147D78]">4. Transparent Pilot Fulfillment</div>
+            <p class="text-xs text-[#536471] mt-1 leading-relaxed">
+              No fake checkout forms or deceptive '#’ links. Premium study drops during the pilot are fulfilled with verified mentor care via WhatsApp and email.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

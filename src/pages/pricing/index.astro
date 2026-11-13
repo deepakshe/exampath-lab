@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../data/site-config';
+---
+
+<BaseLayout
+  title="Pricing & Access — ExamPath Lab"
+  description="Transparent, fair pricing for competitive exam preparation. Free core library forever, optional high-yield weekly pilot drops."
+  breadcrumbs={[{ label: 'Pricing & Access' }]}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Pricing Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Honest Commercial Architecture</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        Simple, Transparent Access Model
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        The core learning field guide is 100% free forever. Tightly curated weekly master packs are available at accessible student rates during our initial pilot phase.
+      </p>
+    </div>
+
+    <!-- Product Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {siteConfig.products.map((prod) => (
+        <div class="editorial-card rounded-2xl p-6 sm:p-8 bg-white border border-[#E2DDD1] flex flex-col justify-between relative">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#536471]">
+                {prod.is_free ? 'Always Free' : 'Pilot Release'}
+              </span>
+              <span class={`text-xs font-extrabold px-2.5 py-0.5 rounded ${prod.is_free ? 'bg-[#D7EF72]/40 text-[#172633]' : 'bg-[#D98D45]/20 text-[#D98D45]'}`}>
+                {prod.is_free ? 'Core Tier' : 'Pilot Pass'}
+              </span>
+            </div>
+
+            <h2 class="font-heading font-extrabold text-xl text-[#172633]">
+              <span data-lang="en">{prod.name_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{prod.name_hi}</span>
+            </h2>
+
+            <div class="mt-4 mb-3 flex items-baseline gap-1">
+              <span class="font-heading font-black text-3xl sm:text-4xl text-[#172633]">
+                {prod.is_free ? '₹0' : `₹${prod.price_inr}`}
+              </span>
+              <span class="text-xs text-[#536471]">
+                {prod.is_free ? 'Free Forever' : 'One-time payment'}
+              </span>
+            </div>
+
+            <p class="text-xs text-[#536471] leading-relaxed mb-6">
+              <span data-lang="en">{prod.description_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{prod.description_hi}</span>
+            </p>
+
+            <!-- Features List -->
+            <div class="pt-4 border-t border-[#E2DDD1]">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-[#147D78] mb-2">What is included:</div>
+              <ul class="space-y-2 text-xs text-[#172633]">
+                {prod.features_en.map((feat, fidx) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-[#147D78] font-bold">✓</span>
+                    <span data-lang="en">{feat}</span>
+                    <span data-lang="hi" class="hidden font-hindi">{prod.features_hi[fidx]}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-8 pt-4 border-t border-[#E2DDD1]">
+            {prod.is_free ? (
+              <a
+                href="/downloads/free/Common-Foundation-Challenge-Day1-3.html"
+                target="_blank"
+                class="w-full py-3 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold flex items-center justify-center gap-1 transition-colors"
+              >
+                Instant Free Access →
+              </a>
+            ) : (
+              <div>
+                <button
+                  type="button"
+                  disabled
+                  class="w-full py-3 rounded-lg bg-[#E2DDD1] text-[#7F92A3] text-xs font-bold cursor-not-allowed text-center"
+                >
+                  Payments opening soon
+                </button>
+                <div class="text-[11px] text-[#536471] text-center mt-2">
+                  Pilot orders fulfilled via WhatsApp/Email. <a href="/contact/" class="text-[#147D78] underline font-semibold">Contact support</a>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Pilot Manual Fulfillment SOP Notice -->
+    <div class="rounded-2xl p-6 sm:p-8 bg-[#FAF8F3] border border-[#E2DDD1] mb-12">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-3 h-3 rounded-full bg-[#147D78]"></span>
+        <h3 class="font-heading font-extrabold text-lg text-[#172633]">
+          How Manual Pilot Fulfillment Operates
+        </h3>
+      </div>
+      <p class="text-xs sm:text-sm text-[#536471] leading-relaxed mb-4">
+        During our pre-commercial testing phase, we do NOT run automated payment webhooks or store payment gateway credentials in code. Here is our exact transparent process:
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 rounded-lg bg-white border border-[#E2DDD1]">
+          <div class="font-bold text-[#147D78] mb-1">Step 1: Pilot Request</div>
+          <p class="text-[#536471]">An aspirant contacts our editorial desk via WhatsApp or email for access to a specific weekly master drop.</p>
+        </div>
+        <div class="p-4 rounded-lg bg-white border border-[#E2DDD1]">
+          <div class="font-bold text-[#147D78] mb-1">Step 2: Manual Check</div>
+          <p class="text-[#536471]">Payment receipt is manually verified by the desk in our gateway dashboard. No automated browser redirects grant access.</p>
+        </div>
+        <div class="p-4 rounded-lg bg-white border border-[#E2DDD1]">
+          <div class="font-bold text-[#147D78] mb-1">Step 3: Secure Delivery</div>
+          <p class="text-[#536471]">The verified digital PDF pack is delivered directly to the student's registered WhatsApp/Email within 2 to 6 hours.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Refund Commitment -->
+    <div class="p-6 rounded-xl bg-white border border-[#E2DDD1] text-xs text-[#536471] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <strong class="text-[#172633]">Student Satisfaction Assurance:</strong> If any verified pilot study pack fails to deliver the promised mathematical accuracy or syllabus alignment, contact us within 48 hours for a prompt refund.
+      </div>
+      <a href="/legal/refund/" class="text-[#147D78] font-bold underline shrink-0">
+        Read Refund Terms →
+      </a>
+    </div>
+
+  </div>
+</BaseLayout>

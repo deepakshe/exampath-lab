@@ -1,0 +1,97 @@
+[
+  {
+    "id": "exam-banking",
+    "slug": "banking",
+    "name_en": "Banking & Insurance",
+    "name_hi": "बैंकिंग और बीमा",
+    "family": "Banking",
+    "badge": "High Frequency",
+    "color": "#147D78",
+    "summary_en": "SBI PO/Clerk, IBPS PO/Clerk, RRB Officer Scale-I/Assistant, and RBI Assistant. Focuses heavily on speed arithmetic, high-level reasoning puzzles, and financial awareness.",
+    "summary_hi": "एसबीआई पीओ/क्लर्क, आईबीपीएस पीओ/क्लर्क, आरआरबी और आरबीआई असिस्टेंट। गति अंकगणित, पहेलियाँ और वित्तीय जागरूकता पर विशेष ध्यान।",
+    "exam_list": ["SBI PO", "SBI Clerk", "IBPS PO", "IBPS Clerk", "RRB PO", "RRB Clerk", "RBI Assistant"],
+    "active_resources_count": 4,
+    "key_focus_areas": [
+      "Mental percentage and speed maths",
+      "Inequality and coded inequalities",
+      "Editorial vocabulary and cloze test",
+      "RBI circulars and monetary policy framework"
+    ]
+  },
+  {
+    "id": "exam-ssc",
+    "slug": "ssc",
+    "name_en": "SSC Examinations",
+    "name_hi": "एसएससी परीक्षाएं",
+    "family": "SSC",
+    "badge": "Comprehensive",
+    "color": "#2B4C7E",
+    "summary_en": "SSC CGL, CHSL, MTS, CPO, and GD Constable. Balanced distribution across Quantitative Aptitude, General Intelligence, English Comprehension, and General Studies.",
+    "summary_hi": "एसएससी सीजीएल, सीएचएसएल, एमटीएस, सीपीओ और जीडी कांस्टेबल। गणित, रीजनिंग, अंग्रेजी और सामान्य ज्ञान का संतुलित पाठ्यक्रम।",
+    "exam_list": ["SSC CGL", "SSC CHSL", "SSC MTS", "SSC CPO", "SSC GD"],
+    "active_resources_count": 3,
+    "key_focus_areas": [
+      "Arithmetic fundamentals and formula memory",
+      "Vocabulary roots, idioms and phrases",
+      "Logical reasoning patterns",
+      "Static GK and NCERT foundations"
+    ]
+  },
+  {
+    "id": "exam-railways",
+    "slug": "railways",
+    "name_en": "Railways Recruitment (RRB)",
+    "name_hi": "रेलवे भर्ती (आरआरबी)",
+    "family": "Railways",
+    "badge": "High Volume",
+    "color": "#D98D45",
+    "summary_en": "RRB NTPC, Group D, and ALP. Emphasizes basic arithmetic, reasoning classification, general science, and static current affairs.",
+    "summary_hi": "आरआरबी एनटीपीसी, ग्रुप डी और एएलपी। बुनियादी अंकगणित, तार्किक वर्गीकरण, सामान्य विज्ञान और स्टेटिक ज्ञान पर मुख्य जोर।",
+    "exam_list": ["RRB NTPC", "RRB Group D", "RRB ALP"],
+    "active_resources_count": 2,
+    "key_focus_areas": [
+      "Elementary mathematics and shortcuts",
+      "General science principles",
+      "Analytical reasoning",
+      "Indian Railways static knowledge"
+    ]
+  },
+  {
+    "id": "exam-defence",
+    "slug": "defence",
+    "name_en": "Defence Services",
+    "name_hi": "रक्षा सेवाएं",
+    "family": "Defence",
+    "badge": "Rigorous",
+    "color": "#4A5E6D",
+    "summary_en": "CDS, AFCAT, NDA, and CAPF. Requires strong conceptual clarity in English grammar, high-level comprehension, and elementary mathematics.",
+    "summary_hi": "सीडीएस, एफकैट, एनडीए और सीएपीएफ। अंग्रेजी व्याकरण, उच्च-स्तरीय समझ और मौलिक गणित की ठोस आवश्यकता।",
+    "exam_list": ["CDS", "AFCAT", "NDA", "CAPF"],
+    "active_resources_count": 2,
+    "key_focus_areas": [
+      "Precision English comprehension",
+      "Mental speed calculation",
+      "Spatial & verbal reasoning",
+      "National security & geopolitical awareness"
+    ]
+  },
+  {
+    "id": "exam-state",
+    "slug": "state",
+    "name_en": "State Government Exams",
+    "name_hi": "राज्य सरकार की परीक्षाएं",
+    "family": "State",
+    "badge": "Verified Core",
+    "color": "#5C3D75",
+    "summary_en": "State Police SI, Patwari, and Subordinate Selection Commissions. Focuses on bilingual clarity in quantitative aptitude and reasoning.",
+    "summary_hi": "राज्य पुलिस एसआई, पटवारी एवं अधीनस्थ सेवा चयन आयोग। गणित और तार्किक अभिरुचि में द्विभाषी स्पष्टता।",
+    "exam_list": ["State Police SI", "Patwari", "Subordinate Commission Tests"],
+    "active_resources_count": 2,
+    "key_focus_areas": [
+      "Bilingual concept clarity",
+      "State-relevant administrative basics",
+      "Speed calculations",
+      "Standard pattern reasoning"
+    ]
+  }
+]

@@ -1,0 +1,134 @@
+[
+  {
+    "id": "subject-english",
+    "slug": "english",
+    "name_en": "English Language",
+    "name_hi": "अंग्रेजी भाषा",
+    "tagline_en": "Vocabulary · Mnemonics · Grammar",
+    "tagline_hi": "शब्दावली · निमोनिक्स · व्याकरण",
+    "color": "#2B4C7E",
+    "bg_color": "#EDF3FA",
+    "border_color": "#C4D8EE",
+    "summary_en": "Master high-frequency editorial vocabulary, root words, grammatical principles, and reading comprehension without rote cramming.",
+    "summary_hi": "रटने के बजाय रूट शब्दों, व्याकरण के नियमों और स्मृति ट्रिक्स के माध्यम से संपादकीय शब्दावली में महारत हासिल करें।",
+    "topics": [
+      "Root Words & Etymology",
+      "Editorial Vocabulary & Mnemonics",
+      "Subject-Verb Agreement",
+      "Error Spotting Rules",
+      "Cloze Test Techniques",
+      "Reading Comprehension Strategies"
+    ],
+    "active_count": 2
+  },
+  {
+    "id": "subject-quant",
+    "slug": "quant",
+    "name_en": "Quantitative Aptitude",
+    "name_hi": "संख्यात्मक अभियोग्यता",
+    "tagline_en": "Concepts · Shortcuts · DI",
+    "tagline_hi": "अवधारणाएं · शॉर्टकट · डेटा इंटरप्रिटेशन",
+    "color": "#147D78",
+    "bg_color": "#E8F3F2",
+    "border_color": "#BADBD8",
+    "summary_en": "Zero-based conceptual foundations paired with mathematically verified shortcut techniques and data interpretation frameworks.",
+    "summary_hi": "बुनियादी वैचारिक स्पष्टता के साथ गणितीय रूप से सत्यापित शॉर्टकट विधियां और डेटा इंटरप्रिटेशन के तरीके।",
+    "topics": [
+      "Fractions to Percentage Tables",
+      "Percentage Foundations & Change",
+      "Ratio & Proportion Simplification",
+      "Speed, Distance & Time Shortcuts",
+      "Profit, Loss & Discount Traps",
+      "Data Interpretation Tabular Sets"
+    ],
+    "active_count": 3
+  },
+  {
+    "id": "subject-reasoning",
+    "slug": "reasoning",
+    "name_en": "Reasoning Ability",
+    "name_hi": "तार्किक अभिरुचि",
+    "tagline_en": "Puzzles · Patterns · Practice",
+    "tagline_hi": "पहेलियां · पैटर्न · सटीक अभ्यास",
+    "color": "#5C3D75",
+    "bg_color": "#F4EEF7",
+    "border_color": "#DCBFE3",
+    "summary_en": "Eliminate guesswork in logical deductions, coded inequalities, direction sense, and seating arrangement puzzles.",
+    "summary_hi": "असमानताओं, दिशा ज्ञान, ब्लड रिलेशन और बैठने की व्यवस्था वाली पहेलियों में अनुमान लगाने की आदत को खत्म करें।",
+    "topics": [
+      "Direct & Coded Inequality Rules",
+      "Syllogism 100-50 & Venn Logic",
+      "Blood Relations Family Trees",
+      "Direction & Distance Planes",
+      "Linear & Circular Seating Basics",
+      "Order & Ranking Traps"
+    ],
+    "active_count": 2
+  },
+  {
+    "id": "subject-ga",
+    "slug": "general-awareness",
+    "name_en": "General Awareness",
+    "name_hi": "सामान्य जागरूकता",
+    "tagline_en": "Static GK · Current Affairs",
+    "tagline_hi": "स्टेटिक जीके · समसामयिकी",
+    "color": "#B87333",
+    "bg_color": "#FAF0E6",
+    "border_color": "#ECCBB0",
+    "summary_en": "Fact-checked static knowledge and verified current developments with transparent sourcing and zero fabricated claims.",
+    "summary_hi": "पारदर्शी स्रोतों के साथ प्रमाणित स्टेटिक सामान्य ज्ञान और समसामयिक विकास, बिना किसी मनगढ़ंत दावों के।",
+    "topics": [
+      "Indian Polity & Constitutional Articles",
+      "National Parks & Wildlife Sanctuaries",
+      "Important Days & Themes",
+      "International Summits & Reports",
+      "Government Schemes & Allocations",
+      "Science in Daily Life"
+    ],
+    "active_count": 1
+  },
+  {
+    "id": "subject-banking",
+    "slug": "banking-awareness",
+    "name_en": "Banking & Financial Awareness",
+    "name_hi": "बैंकिंग एवं वित्तीय जागरूकता",
+    "tagline_en": "RBI · Policy · Terms",
+    "tagline_hi": "आरबीआई · मौद्रिक नीति · वित्तीय शब्दावली",
+    "color": "#1E3A5F",
+    "bg_color": "#EAF0F6",
+    "border_color": "#B7CCE2",
+    "summary_en": "Understand the Reserve Bank of India, monetary policy instruments (CRR, SLR, Repo), payment systems (UPI, NEFT, RTGS), and financial markets.",
+    "summary_hi": "भारतीय रिजर्व बैंक, मौद्रिक नीति उपकरण (सीआरआर, एसएलआर, रेपो), भुगतान प्रणालियां और वित्तीय बाजारों की गहरी समझ।",
+    "topics": [
+      "RBI History & Organizational Structure",
+      "Monetary Policy Framework (Repo, Reverse Repo)",
+      "Priority Sector Lending (PSL) Norms",
+      "Digital Payment Systems & NPCI",
+      "Non-Performing Assets (NPA) & SARFAESI Act",
+      "Prompt Corrective Action (PCA) Framework"
+    ],
+    "active_count": 1
+  },
+  {
+    "id": "subject-computer",
+    "slug": "computer-awareness",
+    "name_en": "Computer Awareness",
+    "name_hi": "कंप्यूटर जागरूकता",
+    "tagline_en": "Hardware · Cyber · Tools",
+    "tagline_hi": "हार्डवेयर · साइबर सुरक्षा · ऑफिस टूल्स",
+    "color": "#206B82",
+    "bg_color": "#E6F4F7",
+    "border_color": "#B4DFE7",
+    "summary_en": "Core architectures, memory hierarchies, operating system concepts, networking protocols, and keyboard shortcuts required for exam qualifying sections.",
+    "summary_hi": "मेमोरी पदानुक्रम, ऑपरेटिंग सिस्टम, नेटवर्किंग प्रोटोकॉल और शॉर्टकट कीज जो क्वालिफाइंग पेपरों के लिए आवश्यक हैं।",
+    "topics": [
+      "Computer Architecture & Generations",
+      "Memory Hierarchy (RAM, ROM, Cache)",
+      "Networking Protocols & OSI Layers",
+      "Cybersecurity Basics & Malware Types",
+      "MS Office Shortcuts & Formulas",
+      "Database & SQL Basics"
+    ],
+    "active_count": 1
+  }
+]

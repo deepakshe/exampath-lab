@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Study Guide Not Found | ExamPath Lab"
+  description="The requested examination guide or topic could not be located in the current Field Guide directory."
+  breadcrumbs={[{ label: '404' }]}
+>
+  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    
+    <div class="w-16 h-16 rounded-full bg-[#FAF8F3] border border-[#E2DDD1] flex items-center justify-center mx-auto text-[#147D78] mb-6">
+      <span class="font-mono font-black text-2xl">404</span>
+    </div>
+
+    <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633]">
+      Study Guide Not Located
+    </h1>
+
+    <p class="text-sm text-[#536471] mt-3 leading-relaxed max-w-md mx-auto">
+      The page or syllabus module you requested may have been relocated, updated, or is currently undergoing verified peer-review by our editorial team.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a
+        href="/library/"
+        class="w-full sm:w-auto px-6 py-3 rounded-lg bg-[#147D78] hover:bg-[#116662] text-white text-xs font-bold transition-colors"
+      >
+        Search Complete Library →
+      </a>
+      <a
+        href="/"
+        class="w-full sm:w-auto px-6 py-3 rounded-lg border border-[#E2DDD1] bg-white hover:bg-[#FAF8F3] text-[#172633] text-xs font-bold transition-colors"
+      >
+        Return to Field Guide Home
+      </a>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-[#E2DDD1] text-xs text-[#536471]">
+      Looking for something specific? Jump directly to:
+      <div class="mt-2 flex flex-wrap justify-center gap-2 font-bold text-[#147D78]">
+        <a href="/exams/banking/" class="hover:underline">Banking</a> •
+        <a href="/subjects/quant/" class="hover:underline">Quant Shortcuts</a> •
+        <a href="/subjects/reasoning/" class="hover:underline">Inequality Rules</a> •
+        <a href="/practice/" class="hover:underline">Flashcard Drill Room</a>
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

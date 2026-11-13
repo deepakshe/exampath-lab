@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InteractiveFlashcards from '../../components/InteractiveFlashcards.astro';
+import InteractiveQuiz from '../../components/InteractiveQuiz.astro';
+import questions from '../../data/questions.json';
+---
+
+<BaseLayout
+  title="Active Recall & Drill Room — ExamPath Lab"
+  description="Train your memory with interactive 3D flashcards, desi mnemonics, and timed verified MCQs with instant feedback."
+  breadcrumbs={[{ label: 'Practice & Recall' }]}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    
+    <!-- Drill Room Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="field-badge text-[#D98D45] border-[#D98D45]/30 bg-[#FDF4EB]">Interactive Memory Gym</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        Active Recall & Speed Drill Room
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        Passive reading creates the illusion of competence. Only forced active retrieval locks facts into long-term memory. Flip cards, test formulas, and eliminate exam traps.
+      </p>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <div class="flex items-center justify-center gap-3 mb-10">
+      <button
+        id="tab-flashcards-btn"
+        type="button"
+        class="px-5 py-2.5 rounded-lg text-xs font-bold border border-[#147D78] bg-[#147D78] text-white shadow-xs transition-colors"
+      >
+        📇 Flashcard Retrieval Deck (5 Cards)
+      </button>
+      <button
+        id="tab-quiz-btn"
+        type="button"
+        class="px-5 py-2.5 rounded-lg text-xs font-bold border border-[#E2DDD1] bg-white text-[#172633] hover:border-[#147D78] transition-colors"
+      >
+        ⏱ Timed Verified MCQ Test
+      </button>
+    </div>
+
+    <!-- Section 1: Flashcards Deck -->
+    <div id="section-flashcards" class="transition-all">
+      <div class="bg-white border border-[#E2DDD1] rounded-2xl p-6 sm:p-8 shadow-sm mb-12">
+        <div class="text-center max-w-md mx-auto mb-6">
+          <h2 class="font-heading font-extrabold text-xl text-[#172633]">
+            High-Yield Bilingual Flashcards
+          </h2>
+          <p class="text-xs text-[#536471] mt-1">
+            Tap or press Spacebar to flip. Self-grade your recall using FSRS buttons (Again, Hard, Good, Easy).
+          </p>
+        </div>
+
+        <InteractiveFlashcards />
+      </div>
+    </div>
+
+    <!-- Section 2: Timed Verified MCQ Drill (Hidden by default or toggled) -->
+    <div id="section-quiz" class="hidden transition-all">
+      <InteractiveQuiz
+        questions={questions}
+        title="Comprehensive Mixed Diagnostic Test (Verified MCQs)"
+      />
+    </div>
+
+    <!-- Scientific Spaced Repetition Note -->
+    <div class="rounded-xl p-6 bg-[#FAF8F3] border border-[#E2DDD1] text-xs space-y-2">
+      <div class="font-bold text-[#172633] uppercase tracking-wider flex items-center gap-2">
+        <svg class="w-4 h-4 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+        The ExamPath Lab Recall Protocol
+      </div>
+      <p class="text-[#536471] leading-relaxed">
+        Research in cognitive science proves that retrieval practice strengthens synaptic pathways more than re-reading notes 10 times. When you mark a card "Again", revisit it within 24 hours. When marked "Easy", push the review window out by 4 to 7 days.
+      </p>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  const fcBtn = document.getElementById('tab-flashcards-btn');
+  const quizBtn = document.getElementById('tab-quiz-btn');
+  const fcSection = document.getElementById('section-flashcards');
+  const quizSection = document.getElementById('section-quiz');
+
+  fcBtn?.addEventListener('click', () => {
+    fcBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold border border-[#147D78] bg-[#147D78] text-white shadow-xs transition-colors';
+    quizBtn!.className = 'px-5 py-2.5 rounded-lg text-xs font-bold border border-[#E2DDD1] bg-white text-[#172633] hover:border-[#147D78] transition-colors';
+    fcSection?.classList.remove('hidden');
+    quizSection?.classList.add('hidden');
+  });
+
+  quizBtn?.addEventListener('click', () => {
+    quizBtn.className = 'px-5 py-2.5 rounded-lg text-xs font-bold border border-[#147D78] bg-[#147D78] text-white shadow-xs transition-colors';
+    fcBtn!.className = 'px-5 py-2.5 rounded-lg text-xs font-bold border border-[#E2DDD1] bg-white text-[#172633] hover:border-[#147D78] transition-colors';
+    quizSection?.classList.remove('hidden');
+    fcSection?.classList.add('hidden');
+  });
+</script>

@@ -1,0 +1,372 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../data/site-config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+  breadcrumbs?: Array<{ label: string; href?: string }>;
+}
+
+const {
+  title = `${siteConfig.brand.name} — ${siteConfig.brand.tagline_en}`,
+  description = siteConfig.brand.description_en,
+  canonicalUrl = Astro.url.href,
+  breadcrumbs = [],
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteConfig.brand.name} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23147D78'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>" />
+  </head>
+  <body class="bg-[#F5F2E9] text-[#172633] min-h-screen flex flex-col selection:bg-[#D7EF72] selection:text-[#172633]">
+    
+    <!-- Top Global Editorial Bar -->
+    <div class="bg-[#172633] text-[#F5F2E9] py-1.5 px-4 text-xs font-medium tracking-wide">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-[#D7EF72]"></span>
+          <span data-lang="en">Commercial Learning Field Guide · Verified Bilingual Library · ₹0 Free Core</span>
+          <span data-lang="hi" class="hidden font-hindi">कमर्शियल लर्निंग फील्ड गाइड · सत्यापित द्विभाषी लाइब्रेरी · ₹0 मुफ्त कोर</span>
+        </div>
+        <div class="hidden sm:flex items-center gap-4 text-[#A0B0BF]">
+          <span>Cloudflare Pages</span>
+          <span>•</span>
+          <span>Zero Fabricated Shortcuts</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-[#F5F2E9]/95 backdrop-blur border-b border-[#E2DDD1]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        
+        <!-- Brand Identity -->
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-lg bg-[#147D78] flex items-center justify-center text-white font-black text-lg tracking-tighter shadow-sm group-hover:bg-[#116662] transition-colors">
+            EP
+          </div>
+          <div>
+            <div class="font-heading font-extrabold text-lg text-[#172633] tracking-tight leading-none">
+              EXAMPATH <span class="text-[#147D78]">LAB</span>
+            </div>
+            <div class="text-[10px] font-bold text-[#536471] tracking-wider uppercase leading-tight mt-0.5">
+              Learn · Remember · Solve
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+          {siteConfig.navigation.map((item) => (
+            <a
+              href={item.href}
+              class="px-2.5 lg:px-3 py-1.5 rounded-md text-sm font-semibold text-[#172633] hover:text-[#147D78] hover:bg-[#FAF8F3] transition-colors"
+            >
+              <span data-lang="en">{item.label_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{item.label_hi}</span>
+            </a>
+          ))}
+        </nav>
+
+        <!-- Global Utilities: Bilingual Toggle & Bookmarks -->
+        <div class="flex items-center gap-2 sm:gap-3">
+          
+          <!-- Bilingual Language Switcher -->
+          <button
+            id="lang-toggle-btn"
+            type="button"
+            class="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold rounded border border-[#E2DDD1] bg-[#FAF8F3] hover:border-[#147D78] text-[#172633] transition-colors"
+            title="Toggle English / हिंदी"
+          >
+            <svg class="w-3.5 h-3.5 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+            </svg>
+            <span id="lang-current-label">EN / हिंदी</span>
+          </button>
+
+          <!-- Bookmarks Drawer Trigger -->
+          <button
+            id="bookmarks-toggle-btn"
+            type="button"
+            class="relative p-1.5 rounded border border-[#E2DDD1] bg-[#FAF8F3] hover:border-[#147D78] text-[#172633] transition-colors"
+            title="View Saved Bookmarks"
+          >
+            <svg class="w-4 h-4 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+            <span id="bookmarks-count-badge" class="hidden absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full bg-[#D98D45] text-white text-[10px] font-bold flex items-center justify-center">
+              0
+            </span>
+          </button>
+
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-btn"
+            type="button"
+            class="md:hidden p-1.5 rounded border border-[#E2DDD1] bg-[#FAF8F3] text-[#172633]"
+            title="Toggle Menu"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Dropdown Navigation -->
+      <div id="mobile-menu" class="hidden md:hidden border-t border-[#E2DDD1] bg-[#FAF8F3] px-4 py-3 space-y-1">
+        {siteConfig.navigation.map((item) => (
+          <a
+            href={item.href}
+            class="block px-3 py-2 rounded text-base font-semibold text-[#172633] hover:bg-[#E8F3F2] hover:text-[#147D78]"
+          >
+            <span data-lang="en">{item.label_en}</span>
+            <span data-lang="hi" class="hidden font-hindi">{item.label_hi}</span>
+          </a>
+        ))}
+      </div>
+    </header>
+
+    <!-- Breadcrumbs (if present) -->
+    {breadcrumbs.length > 0 && (
+      <div class="bg-[#FAF8F3] border-b border-[#E2DDD1] py-2 px-4 text-xs">
+        <div class="max-w-7xl mx-auto flex items-center gap-1.5 text-[#536471]">
+          <a href="/" class="hover:text-[#147D78] font-medium">Home</a>
+          {breadcrumbs.map((bc, idx) => (
+            <>
+              <span>/</span>
+              {bc.href ? (
+                <a href={bc.href} class="hover:text-[#147D78] font-medium">{bc.label}</a>
+              ) : (
+                <span class="text-[#172633] font-bold">{bc.label}</span>
+              )}
+            </>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Main Page Content -->
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Bookmarks Modal/Drawer -->
+    <div id="bookmarks-modal" class="hidden fixed inset-0 z-50 bg-black/40 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-[#FAF8F3] border border-[#E2DDD1] rounded-xl max-w-lg w-full p-6 shadow-2xl relative">
+        <div class="flex items-center justify-between pb-4 border-b border-[#E2DDD1]">
+          <h3 class="font-heading font-bold text-lg text-[#172633] flex items-center gap-2">
+            <svg class="w-5 h-5 text-[#147D78]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+            </svg>
+            Saved Study Resources
+          </h3>
+          <button id="close-bookmarks-btn" class="text-[#536471] hover:text-[#172633] p-1 font-bold">✕</button>
+        </div>
+        <div id="bookmarks-list" class="py-4 space-y-2 max-h-72 overflow-y-auto">
+          <p class="text-sm text-[#536471] text-center py-6">No saved resources yet. Click the bookmark icon on any guide to save it here for quick review!</p>
+        </div>
+        <div class="pt-4 border-t border-[#E2DDD1] flex justify-between items-center text-xs text-[#536471]">
+          <span>Saved locally on your device</span>
+          <button id="clear-bookmarks-btn" class="text-rose-600 hover:underline">Clear all</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Footer -->
+    <footer class="bg-[#172633] text-[#F5F2E9] border-t-4 border-[#147D78] mt-16 pt-12 pb-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-[#2C3E50]">
+          
+          <!-- Column 1: Brand & Philosophy -->
+          <div class="md:col-span-1 space-y-3">
+            <div class="font-heading font-extrabold text-xl tracking-tight text-white">
+              EXAMPATH <span class="text-[#D7EF72]">LAB</span>
+            </div>
+            <p class="text-xs text-[#A0B0BF] leading-relaxed">
+              The Learning Field Guide for Indian Government Exams. Designed around: What to study → How to understand → How to remember → How to solve → How to revise.
+            </p>
+            <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded bg-[#243545] border border-[#34495E] text-xs text-[#D7EF72]">
+              <span>Hosted on Cloudflare Pages Free</span>
+            </div>
+          </div>
+
+          <!-- Column 2: Exams Directory -->
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-[#A0B0BF] mb-3">Exam Taxonomies</h4>
+            <ul class="space-y-2 text-sm text-[#E2DDD1]">
+              <li><a href="/exams/banking/" class="hover:text-[#D7EF72] transition-colors">Banking & Insurance (SBI/IBPS/RRB)</a></li>
+              <li><a href="/exams/ssc/" class="hover:text-[#D7EF72] transition-colors">SSC Examinations (CGL/CHSL)</a></li>
+              <li><a href="/exams/railways/" class="hover:text-[#D7EF72] transition-colors">Railways Recruitment (RRB NTPC)</a></li>
+              <li><a href="/exams/defence/" class="hover:text-[#D7EF72] transition-colors">Defence Services (CDS/AFCAT)</a></li>
+              <li><a href="/exams/state/" class="hover:text-[#D7EF72] transition-colors">State Subordinate Exams</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: Subjects & Practice -->
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-[#A0B0BF] mb-3">Subjects & Practice</h4>
+            <ul class="space-y-2 text-sm text-[#E2DDD1]">
+              <li><a href="/subjects/english/" class="hover:text-[#D7EF72] transition-colors">English (Vocab · Mnemonics)</a></li>
+              <li><a href="/subjects/quant/" class="hover:text-[#D7EF72] transition-colors">Quant (Fractions · Shortcuts)</a></li>
+              <li><a href="/subjects/reasoning/" class="hover:text-[#D7EF72] transition-colors">Reasoning (Inequality · Puzzles)</a></li>
+              <li><a href="/subjects/banking-awareness/" class="hover:text-[#D7EF72] transition-colors">Banking & Monetary Policy</a></li>
+              <li><a href="/practice/" class="hover:text-[#D7EF72] transition-colors">Active Recall Drill Room</a></li>
+              <li><a href="/weekly/" class="hover:text-[#D7EF72] transition-colors">Weekly Learning Drops</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 4: Standards & Legal -->
+          <div>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-[#A0B0BF] mb-3">Editorial & Legal</h4>
+            <ul class="space-y-2 text-sm text-[#E2DDD1]">
+              <li><a href="/about/" class="hover:text-[#D7EF72] transition-colors">About Our Standards</a></li>
+              <li><a href="/pricing/" class="hover:text-[#D7EF72] transition-colors">Pilot Pricing & Manual Delivery SOP</a></li>
+              <li><a href="/contact/" class="hover:text-[#D7EF72] transition-colors">Contact Mentors</a></li>
+              <li><a href="/legal/terms/" class="hover:text-[#D7EF72] transition-colors">Terms of Service (Draft)</a></li>
+              <li><a href="/legal/privacy/" class="hover:text-[#D7EF72] transition-colors">Privacy Policy</a></li>
+              <li><a href="/legal/refund/" class="hover:text-[#D7EF72] transition-colors">Refund & Cancellation Policy</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom Disclaimer -->
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#7F92A3] gap-4">
+          <div>
+            © {new Date().getFullYear()} ExamPath Lab. Built with Astro & Cloudflare Pages.
+          </div>
+          <div class="text-center sm:text-right">
+            Independent educational publisher. Not affiliated with IBPS, SSC, RRB, SBI, or Government of India.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Global Client Logic (Bilingual Switcher, Mobile Menu, Bookmarks) -->
+    <script>
+      // 1. Language Toggle Logic
+      let currentLang = localStorage.getItem('exampath_lang') || 'en';
+      
+      function setLanguage(lang: string) {
+        currentLang = lang;
+        localStorage.setItem('exampath_lang', lang);
+        
+        const enElements = document.querySelectorAll('[data-lang="en"]');
+        const hiElements = document.querySelectorAll('[data-lang="hi"]');
+        
+        if (lang === 'hi') {
+          enElements.forEach(el => el.classList.add('hidden'));
+          hiElements.forEach(el => el.classList.remove('hidden'));
+          const btnLabel = document.getElementById('lang-current-label');
+          if (btnLabel) btnLabel.textContent = 'हिंदी (Active)';
+        } else {
+          hiElements.forEach(el => el.classList.add('hidden'));
+          enElements.forEach(el => el.classList.remove('hidden'));
+          const btnLabel = document.getElementById('lang-current-label');
+          if (btnLabel) btnLabel.textContent = 'EN / हिंदी';
+        }
+      }
+
+      // Initialize on load
+      setLanguage(currentLang);
+
+      document.getElementById('lang-toggle-btn')?.addEventListener('click', () => {
+        setLanguage(currentLang === 'en' ? 'hi' : 'en');
+      });
+
+      // 2. Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      mobileBtn?.addEventListener('click', () => {
+        mobileMenu?.classList.toggle('hidden');
+      });
+
+      // 3. Bookmarks Management
+      function getBookmarks(): string[] {
+        try {
+          return JSON.parse(localStorage.getItem('exampath_bookmarks') || '[]');
+        } catch {
+          return [];
+        }
+      }
+
+      function updateBookmarksUI() {
+        const bookmarks = getBookmarks();
+        const badge = document.getElementById('bookmarks-count-badge');
+        if (badge) {
+          if (bookmarks.length > 0) {
+            badge.textContent = String(bookmarks.length);
+            badge.classList.remove('hidden');
+          } else {
+            badge.classList.add('hidden');
+          }
+        }
+      }
+
+      updateBookmarksUI();
+
+      // Bookmarks Modal open/close
+      const bookmarksBtn = document.getElementById('bookmarks-toggle-btn');
+      const bookmarksModal = document.getElementById('bookmarks-modal');
+      const closeBookmarksBtn = document.getElementById('close-bookmarks-btn');
+      const clearBookmarksBtn = document.getElementById('clear-bookmarks-btn');
+      const bookmarksList = document.getElementById('bookmarks-list');
+
+      bookmarksBtn?.addEventListener('click', () => {
+        const bookmarks = getBookmarks();
+        if (bookmarksList) {
+          if (bookmarks.length === 0) {
+            bookmarksList.innerHTML = '<p class="text-sm text-[#536471] text-center py-6">No saved resources yet. Click the bookmark icon on any guide to save it here for quick review!</p>';
+          } else {
+            bookmarksList.innerHTML = bookmarks.map(slug => `
+              <div class="flex items-center justify-between p-3 rounded bg-white border border-[#E2DDD1]">
+                <a href="/library/${slug}/" class="text-sm font-bold text-[#147D78] hover:underline capitalize">
+                  ${slug.replace(/-/g, ' ')}
+                </a>
+                <button onclick="removeBookmark('${slug}')" class="text-xs text-rose-500 hover:text-rose-700 ml-2">Remove</button>
+              </div>
+            `).join('');
+          }
+        }
+        bookmarksModal?.classList.remove('hidden');
+      });
+
+      closeBookmarksBtn?.addEventListener('click', () => {
+        bookmarksModal?.classList.add('hidden');
+      });
+
+      clearBookmarksBtn?.addEventListener('click', () => {
+        localStorage.removeItem('exampath_bookmarks');
+        updateBookmarksUI();
+        if (bookmarksList) {
+          bookmarksList.innerHTML = '<p class="text-sm text-[#536471] text-center py-6">All bookmarks cleared.</p>';
+        }
+      });
+
+      (window as any).removeBookmark = function(slug: string) {
+        let b = getBookmarks().filter(s => s !== slug);
+        localStorage.setItem('exampath_bookmarks', JSON.stringify(b));
+        updateBookmarksUI();
+        bookmarksBtn?.click();
+      };
+    </script>
+  </body>
+</html>

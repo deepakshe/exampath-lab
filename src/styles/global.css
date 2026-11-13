@@ -1,0 +1,97 @@
+/* Google Fonts: Manrope (Headings), Plus Jakarta Sans (Body), Noto Sans Devanagari (Hindi) */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg-ivory: #F5F2E9;
+  --bg-surface: #FAF8F3;
+  --bg-surface-elevated: #FFFFFF;
+  --text-navy: #172633;
+  --text-muted: #536471;
+  --accent-teal: #147D78;
+  --accent-teal-soft: #E8F3F2;
+  --accent-lime: #D7EF72;
+  --accent-lime-soft: #F6FBE6;
+  --accent-amber: #D98D45;
+  --accent-amber-soft: #FDF4EB;
+  --border-warm: #E2DDD1;
+  --border-strong: #D1CABB;
+
+  --font-heading: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-devanagari: 'Noto Sans Devanagari', sans-serif;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--bg-ivory);
+  color: var(--text-navy);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+.font-hindi {
+  font-family: var(--font-devanagari), var(--font-body);
+}
+
+/* Custom Editorial Elements */
+.field-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-warm);
+  background-color: var(--bg-surface);
+}
+
+.editorial-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-warm);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -8px rgba(23, 38, 51, 0.08);
+}
+
+/* Focus styles for keyboard accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--accent-teal);
+  outline-offset: 2px;
+}
+
+/* Subtle print styles for cheat sheets and guides */
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background-color: white !important;
+    color: black !important;
+  }
+  .print-page {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+}

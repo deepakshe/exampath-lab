@@ -1,0 +1,62 @@
+[
+  {
+    "id": "fc-01",
+    "subject": "english",
+    "term": "Aberration",
+    "pos": "Noun",
+    "meaning_en": "A departure from what is normal, usual, or expected.",
+    "meaning_hi": "सामान्य या अपेक्षित स्थिति से भटकाव; असामान्यता।",
+    "mnemonic": "AB (Away) + ERR (Error/भटकना) → Jo apne normal track se bhatak gaya = Anomaly.",
+    "synonyms": ["Anomaly", "Deviation", "Irregularity"],
+    "antonyms": ["Conformity", "Normality", "Regularity"],
+    "example": "The sudden spike in inflation was an aberration due to monsoon delays."
+  },
+  {
+    "id": "fc-02",
+    "subject": "english",
+    "term": "Cacophony",
+    "pos": "Noun",
+    "meaning_en": "A harsh, discordant mixture of sounds.",
+    "meaning_hi": "कर्कश, अप्रिय और अशांत ध्वनियों का मिश्रण।",
+    "mnemonic": "CACO (Bad/खराब) + PHON (Sound/आवाज) → Kaan ko chubhney wali awaz = Harsh noise.",
+    "synonyms": ["Discord", "Clamor", "Dissonance"],
+    "antonyms": ["Harmony", "Euphony", "Symphony"],
+    "example": "The cacophony of street horns made focus impossible during the mock test."
+  },
+  {
+    "id": "fc-03",
+    "subject": "english",
+    "term": "Ephemeral",
+    "pos": "Adjective",
+    "meaning_en": "Lasting for a very short time; transitory.",
+    "meaning_hi": "अल्पकालिक, क्षणभंगुर।",
+    "mnemonic": "E-PHEMERAL sounds like 'FEEM' (Foam) → Foam lasts only seconds = Short-lived.",
+    "synonyms": ["Transient", "Fleeting", "Evanescent"],
+    "antonyms": ["Permanent", "Eternal", "Enduring"],
+    "example": "Social media outrage is usually ephemeral, fading within forty-eight hours."
+  },
+  {
+    "id": "fc-04",
+    "subject": "banking-awareness",
+    "term": "Cash Reserve Ratio (CRR)",
+    "pos": "Regulatory Instrument",
+    "meaning_en": "The percentage of a bank's Net Demand and Time Liabilities (NDTL) that it must keep in cash with the RBI.",
+    "meaning_hi": "बैंक की कुल जमा पूंजी (NDTL) का वह प्रतिशत जिसे नकद रूप में RBI के पास रखना अनिवार्य होता है।",
+    "mnemonic": "CASH + RESERVE with RBI → Banks earn ZERO interest on this amount. Direct liquidity tool.",
+    "synonyms": ["Section 42(1) RBI Act 1934", "Liquidity Absorber"],
+    "antonyms": ["Statutory Liquidity Ratio (kept with self in gold/gov bonds)"],
+    "example": "When RBI increases CRR, available lending capital shrinks, controlling inflation."
+  },
+  {
+    "id": "fc-05",
+    "subject": "quant",
+    "term": "1/7 and 1/14 Fractions",
+    "pos": "Mental Math Technique",
+    "meaning_en": "1/7 = 14.28% and 1/14 = 7.14%.",
+    "meaning_hi": "1/7 = 14.28% और 1/14 = 7.14%।",
+    "mnemonic": "7 table doubling: 7 × 2 = 14, 14 × 2 = 28 → 14.28%! For 1/14, reverse it: 7.14%!",
+    "synonyms": ["Mental Fraction Equivalents"],
+    "antonyms": ["Tedious long division"],
+    "example": "Calculating 14.28% of 350? Simply divide 350 by 7 = 50 immediately."
+  }
+]

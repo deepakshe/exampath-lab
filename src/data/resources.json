@@ -1,0 +1,220 @@
+[
+  {
+    "id": "res-quant-01",
+    "slug": "percentage-foundation-and-shortcuts",
+    "type": "Concept & Practice Guide",
+    "title_en": "Percentage Foundation, Mental Fractions & Shortcut Laws",
+    "title_hi": "प्रतिशत की बुनियादी नींव, मेंटल भिन्न और शॉर्टकट नियम",
+    "summary_en": "Master the foundation of commercial arithmetic: fraction-to-percentage conversion, expenditure-consumption balance, and successive percentage change with verified shortcut conditions.",
+    "summary_hi": "अंकगणित की नींव में महारत: भिन्न-से-प्रतिशत रूपांतरण, खर्च-खपत संतुलन, और क्रमिक प्रतिशत परिवर्तन के सत्यापित शॉर्टकट नियम।",
+    "subjectId": "quant",
+    "subjectName": "Quantitative Aptitude",
+    "topicIds": ["percentage", "arithmetic"],
+    "examTags": ["Banking", "SSC", "Railways", "Defence", "State"],
+    "level": "Beginner to Intermediate",
+    "modes": ["Beginner", "Intermediate", "Revision"],
+    "languageMode": "Bilingual (English + Hindi)",
+    "access": "Free",
+    "status": "published",
+    "estimatedMinutes": 18,
+    "publishedAt": "2026-11-01",
+    "updatedAt": "2026-11-12",
+    "objectives_en": [
+      "Convert any standard fraction (1/1 to 1/20) into its percentage equivalent within 2 seconds.",
+      "Solve expenditure and consumption balance problems without algebra.",
+      "Understand successive percentage change formula and recognize its valid boundary conditions."
+    ],
+    "objectives_hi": [
+      "किसी भी मानक भिन्न (1/1 से 1/20) को 2 सेकंड के भीतर प्रतिशत में परिवर्तित करना।",
+      "बिना किसी बीजगणित के खर्च और खपत संतुलन प्रश्नों को हल करना।",
+      "क्रमिक प्रतिशत परिवर्तन सूत्र को समझना और इसकी मान्य सीमा शर्तों की पहचान करना।"
+    ],
+    "prerequisites_en": "Basic multiplication tables up to 20 and elementary fraction addition.",
+    "prerequisites_hi": "20 तक के सामान्य पहाड़े और बुनियादी भिन्न जोड़।",
+    "sections": [
+      {
+        "heading_en": "1. The Mental Fraction Ladder (1/1 to 1/12)",
+        "heading_hi": "1. मेंटल फ्रैक्शन लैडर (1/1 से 1/12)",
+        "content_en": "Never calculate fractions by long division during the exam. Memorize these direct anchors:\n• 1/2 = 50%\n• 1/3 = 33.33% (or 33 1/3%)\n• 1/4 = 25%\n• 1/5 = 20%\n• 1/6 = 16.66% (or 16 2/3%)\n• 1/7 = 14.28% (Double of 7 is 14; double of 14 is 28!)\n• 1/8 = 12.5%\n• 1/9 = 11.11%\n• 1/11 = 9.09% (Notice: 9 gives 11.11, and 11 gives 9.09!)\n• 1/12 = 8.33%",
+        "content_hi": "परीक्षा के दौरान कभी भी लंबी भाग विधि से भिन्न की गणना न करें। इन मुख्य मानों को याद रखें:\n• 1/2 = 50%\n• 1/3 = 33.33%\n• 1/4 = 25%\n• 1/5 = 20%\n• 1/6 = 16.66%\n• 1/7 = 14.28% (7 का दुगुना 14, 14 का दुगुना 28!)\n• 1/8 = 12.5%\n• 1/9 = 11.11%\n• 1/11 = 9.09% (ध्यान दें: 9 में 11 आता है, और 11 में 9 आता है!)\n• 1/12 = 8.33%"
+      },
+      {
+        "heading_en": "2. Expenditure = Price × Consumption Rule",
+        "heading_hi": "2. खर्च = मूल्य × खपत का नियम",
+        "content_en": "If Price increases by +a/b, Consumption must decrease by -a/(a+b) to keep total expenditure constant.\n\nExample:\nPrice of sugar rises by 25% (+1/4).\nHere a=1, b=4.\nRequired reduction in consumption = 1 / (1 + 4) = 1/5 = 20%.\nNo variables (x) required. 100% mathematically verified.",
+        "content_hi": "यदि मूल्य में +a/b की वृद्धि होती है, तो कुल खर्च स्थिर रखने के लिए खपत में -a/(a+b) की कमी होनी चाहिए।\n\nउदाहरण:\nचीनी के मूल्य में 25% (+1/4) की वृद्धि होती है।\nयहाँ a=1, b=4 है।\nखपत में आवश्यक कमी = 1 / (1 + 4) = 1/5 = 20%।\nकिसी बीजगणितीय चर (x) की आवश्यकता नहीं है।"
+      },
+      {
+        "heading_en": "3. Successive Percentage Change & Boundary Conditions",
+        "heading_hi": "3. क्रमिक प्रतिशत परिवर्तन और अनिवार्य शर्तें",
+        "content_en": "Formula: Net Change = a + b + (a × b) / 100\nWhere positive denotes increase and negative denotes decrease.\n\nVALIDITY CONDITION: This formula applies ONLY when the second percentage change is applied to the RESULT of the first change (e.g. population growth over consecutive years, successive discounts, or rectangle area changes). It does NOT apply to parallel, independent additions.",
+        "content_hi": "सूत्र: शुद्ध परिवर्तन = a + b + (a × b) / 100\nजहाँ धनात्मक मान वृद्धि को और ऋणात्मक मान कमी को दर्शाता है।\n\nमान्य शर्त: यह सूत्र केवल तभी लागू होता है जब दूसरा प्रतिशत पहले परिवर्तन के परिणाम पर लागू हो (जैसे लगातार वर्षों में जनसंख्या वृद्धि या क्रमिक छूट)। यह समानांतर स्वतंत्र योग पर लागू नहीं होता।"
+      }
+    ],
+    "questionIds": ["q-quant-perc-01", "q-quant-perc-02"],
+    "sources": "Standard NCERT Class 8-10 Arithmetic Principles & Certified Exam Analytics",
+    "reviewMetadata": "Verified by Quantitative Aptitude Lead on 2026-11-10"
+  },
+  {
+    "id": "res-reas-01",
+    "slug": "inequality-reasoning-speed-rules",
+    "type": "Concept & Practice Guide",
+    "title_en": "Inequality Reasoning: The King/Soldier Hierarchy & Either-Or Cases",
+    "title_hi": "असमानता रीजनिंग: राजा/सैनिक पदानुक्रम और Either-Or के नियम",
+    "summary_en": "Solve 5 inequality questions in under 60 seconds without drawing tables. Covers single chains, blocked opposite-sign barriers, and 3-sign Either-Or logic.",
+    "summary_hi": "बिना कोई टेबल बनाए 60 सेकंड के भीतर 5 असमानता प्रश्नों को हल करें। सिंगल चेन, विपरीत चिन्ह अवरोध, और Either-Or के सभी नियम।",
+    "subjectId": "reasoning",
+    "subjectName": "Reasoning Ability",
+    "topicIds": ["inequality", "logical-reasoning"],
+    "examTags": ["Banking", "SSC", "Railways", "State"],
+    "level": "Beginner to Intermediate",
+    "modes": ["Beginner", "Intermediate", "Revision"],
+    "languageMode": "Bilingual (English + Hindi)",
+    "access": "Free",
+    "status": "published",
+    "estimatedMinutes": 15,
+    "publishedAt": "2026-11-02",
+    "updatedAt": "2026-11-12",
+    "objectives_en": [
+      "Master the King/Soldier priority order for instant visual deduction.",
+      "Spot blocked paths instantly without writing paper notes.",
+      "Correctly identify the strict conditions under which 'Either-Or' applies."
+    ],
+    "objectives_hi": [
+      "त्वरित दृश्य निष्कर्ष के लिए राजा/सैनिक प्राथमिकता क्रम में महारत हासिल करना।",
+      "रफ शीट पर लिखे बिना बंद मार्गों (विपरीत चिन्हों) की तुरंत पहचान करना।",
+      "'या तो I या II' (Either-Or) लागू होने की सख्त शर्तों को समझना।"
+    ],
+    "prerequisites_en": "Understanding basic relational symbols (>, <, ≥, ≤, =).",
+    "prerequisites_hi": "मूलभूत तुलनात्मक चिन्हों (>, <, ≥, ≤, =) की समझ।",
+    "sections": [
+      {
+        "heading_en": "1. The 3-Tier Priority Hierarchy",
+        "heading_hi": "1. त्रि-स्तरीय प्राथमिकता पदानुक्रम",
+        "content_en": "Rank 1: The King (>, <) — Highest Priority.\nRank 2: The Soldier (≥, ≤) — Second Priority.\nRank 3: The Citizen (=) — Transparent bridge.\n\nRule: Along any continuous path without opposite signs:\n• If the King (>) is present at least once, the conclusion MUST have the King (>).\n• If the King is absent and only Soldiers (≥) and Citizens (=) exist, the conclusion MUST be Soldier (≥).\n• If only Citizens (=) exist from start to finish, the conclusion is (=).",
+        "content_hi": "रैंक 1: राजा (>, <) — सर्वोच्च प्राथमिकता।\nरैंक 2: सैनिक (≥, ≤) — द्वितीय प्राथमिकता।\nरैंक 3: नागरिक (=) — पारदर्शी पुल।\n\nनियम: बिना किसी विपरीत चिन्ह वाले निरंतर मार्ग में:\n• यदि मार्ग में राजा (>) कम से कम एक बार भी मौजूद है, तो निष्कर्ष केवल राजा (>) ही होगा।\n• यदि राजा अनुपस्थित है और केवल सैनिक (≥) और नागरिक (=) हैं, तो निष्कर्ष सैनिक (≥) होगा।"
+      },
+      {
+        "heading_en": "2. Opposite Sign Barrier (Blocked Gate)",
+        "heading_hi": "2. विपरीत चिन्ह अवरोध (बंद दरवाजा)",
+        "content_en": "Whenever two signs face against each other (e.g. > and <, or ≥ and ≤):\n• The relationship between elements across that barrier is INDETERMINATE.\n• Neither > nor < nor = can be asserted with definite certainty individually.",
+        "content_hi": "जब भी दो चिन्ह एक-दूसरे के आमने-सामने आते हैं (जैसे > और <, या ≥ और ≤):\n• उस अवरोध के आर-पार के तत्वों के बीच कोई निश्चित संबंध नहीं बताया जा सकता।\n• व्यक्तिगत रूप से कोई भी निश्चित निष्कर्ष सत्य नहीं माना जा सकता।"
+      },
+      {
+        "heading_en": "3. The Definitive 3-Step Either-Or Checklist",
+        "heading_hi": "3. Either-Or की 3-चरणीय अनिवार्य चेकलिस्ट",
+        "content_en": "To claim 'Either Conclusion I or II follows', verify ALL 3 conditions:\n1. Both elements in both conclusions must be identical (e.g. A and D).\n2. Both conclusions must be individually false/indeterminate due to opposite signs.\n3. Together, both conclusions must cover all 3 possible outcomes: Greater than (>), Less than (<), and Equal to (=).",
+        "content_hi": "'या तो I या II' होने के लिए तीनों शर्तों का पूरा होना अनिवार्य है:\n1. दोनों निष्कर्षों में दोनों तत्व बिल्कुल समान होने चाहिए।\n2. विपरीत चिन्हों के कारण दोनों निष्कर्ष व्यक्तिगत रूप से असत्य होने चाहिए।\n3. दोनों निष्कर्ष मिलकर सभी 3 संभावनाओं (> , < , =) को शामिल करते हों।"
+      }
+    ],
+    "questionIds": ["q-reas-ineq-01", "q-reas-ineq-02"],
+    "sources": "Standard Deductive Logic Frameworks & Formal Exam Question Analysis",
+    "reviewMetadata": "Verified by Logical Reasoning Lead on 2026-11-10"
+  },
+  {
+    "id": "res-eng-01",
+    "slug": "vocabulary-recall-mnemonic-pack-1",
+    "type": "Vocabulary & Memory Hook",
+    "title_en": "Editorial Vocabulary Recall: 15 Core Words with Desi Mnemonics",
+    "title_hi": "संपादकीय शब्दावली रीकॉल: 15 महत्वपूर्ण शब्द और देसी निमोनिक्स",
+    "summary_en": "High-frequency words from The Hindu and Indian Express editorials with syllable breakdowns, synonyms, antonyms, vivid memory hooks, and contextual sentences.",
+    "summary_hi": "द हिंदू और इंडियन एक्सप्रेस के उच्च-आवृत्ति शब्द, उच्चारण, पर्यायवाची, विलोम, स्मृति ट्रिक्स और प्रासंगिक वाक्यों के साथ।",
+    "subjectId": "english",
+    "subjectName": "English Language",
+    "topicIds": ["vocabulary", "mnemonics", "editorial"],
+    "examTags": ["Banking", "SSC", "Defence"],
+    "level": "Beginner to Revision",
+    "modes": ["Beginner", "Revision"],
+    "languageMode": "Bilingual (English + Hindi)",
+    "access": "Free",
+    "status": "published",
+    "estimatedMinutes": 12,
+    "publishedAt": "2026-11-03",
+    "updatedAt": "2026-11-12",
+    "objectives_en": [
+      "Acquire 15 high-frequency editorial words with zero rote memorization.",
+      "Retain exact nuances through relatable mnemonic associations.",
+      "Accurately identify correct synonyms in rapid-fire cloze tests."
+    ],
+    "objectives_hi": [
+      "बिना रटे 15 उच्च-आवृत्ति संपादकीय शब्दों को सीखना।",
+      "देसी स्मृति ट्रिक्स के माध्यम से शब्दों के अर्थ को लंबे समय तक याद रखना।",
+      "क्लोज टेस्ट में सही समानार्थी शब्दों की सटीक पहचान करना।"
+    ],
+    "prerequisites_en": "Intermediate reading comprehension in English.",
+    "prerequisites_hi": "अंग्रेजी में सामान्य समझ।",
+    "sections": [
+      {
+        "heading_en": "Word 1: Aberration (Noun)",
+        "heading_hi": "शब्द 1: Aberration (संज्ञा)",
+        "content_en": "Meaning: A departure from what is normal, usual, or expected.\n• Syllable Break: ab-er-RA-tion\n• Desi Mnemonic: 'AB' (Away/दूर) + 'ERR' (Error/भटकना) → Jo apne regular raaste se error karke bhatak jaye = Anomaly or Deviation.\n• Synonyms: Anomaly, Divergence, Irregularity, Eccentricity\n• Antonyms: Conformity, Normality, Regularity\n• Editorial Context: 'The sharp decline in industrial output in October was dismissed by analysts as an aberration caused by festival holidays.'",
+        "content_hi": "अर्थ: सामान्य या अपेक्षित स्थिति से भटकाव; असामान्यता।\n• देसी निमोनिक: 'AB' (दूर) + 'ERR' (गलती/भटकना) → जो अपने तय रास्ते से भटक जाए यानी Anomaly या Deviation.\n• समानार्थी: Anomaly, Divergence, Irregularity\n• विलोम: Conformity, Normality\n• संदर्भ: त्योहारों के कारण औद्योगिक उत्पादन में गिरावट को विश्लेषकों ने एक विचलन (aberration) माना।"
+      },
+      {
+        "heading_en": "Word 2: Cacophony (Noun)",
+        "heading_hi": "शब्द 2: Cacophony (संज्ञा)",
+        "content_en": "Meaning: A harsh, discordant mixture of sounds.\n• Syllable Break: ca-COPH-o-ny\n• Root Breakdown: 'CACO' (Bad/Ugly) + 'PHONE' (Sound/Voice)\n• Desi Mnemonic: 'Kawa' (Crow) + 'Phone' pe chillaye → Kaan me chubhne wali harsh awaaz = Discordance.\n• Synonyms: Clamor, Dissonance, Racket, Discord\n• Antonyms: Harmony, Euphony, Symphony\n• Editorial Context: 'Amidst the cacophony of rival political debates, the economic reform bill was passed without substantive deliberation.'",
+        "content_hi": "अर्थ: कर्कश, अप्रिय और अशांत ध्वनियों का मिश्रण।\n• रूट शब्द: CACO (खराब) + PHONE (ध्वनि)\n• देसी निमोनिक: कौवे जैसी कान फाड़ने वाली अप्रिय आवाज = Harsh sound.\n• समानार्थी: Clamor, Dissonance, Racket\n• विलोम: Harmony, Euphony"
+      },
+      {
+        "heading_en": "Word 3: Ephemeral (Adjective)",
+        "heading_hi": "शब्द 3: Ephemeral (विशेषण)",
+        "content_en": "Meaning: Lasting for a very short time; transitory.\n• Desi Mnemonic: Sounds like 'Foam' (झाग) → Sabun ka foam lasts only a few seconds = Short-lived.\n• Synonyms: Transient, Fleeting, Evanescent, Momentary\n• Antonyms: Permanent, Perpetual, Enduring\n• Editorial Context: 'Financial market euphoria following the rate cut proved ephemeral as geopolitical tensions resurfaced.'",
+        "content_hi": "अर्थ: अल्पकालिक, क्षणभंगुर, थोड़े समय तक रहने वाला।\n• देसी निमोनिक: साबुन के झाग (Foam) की तरह जो कुछ सेकंड में गायब हो जाए = Short-lived.\n• समानार्थी: Transient, Fleeting, Evanescent\n• विलोम: Permanent, Enduring"
+      }
+    ],
+    "questionIds": ["q-eng-vocab-01"],
+    "sources": "Standard English Lexicography & Oxford English Corpus for Editorial Contexts",
+    "reviewMetadata": "Verified by English Editorial Faculty on 2026-11-10"
+  },
+  {
+    "id": "res-bank-01",
+    "slug": "rbi-monetary-policy-framework-sample",
+    "type": "Banking Regulatory Guide",
+    "title_en": "RBI Monetary Policy Framework: Repo, CRR & Liquidity Operations",
+    "title_hi": "आरबीआई मौद्रिक नीति ढांचा: रेपो, सीआरआर और तरलता प्रबंधन",
+    "summary_en": "Understand Section 45ZB of the RBI Act, the Monetary Policy Committee (MPC) structure, reserve ratios, and liquidity adjustment facility (LAF) tools.",
+    "summary_hi": "आरबीआई अधिनियम की धारा 45ZB, मौद्रिक नीति समिति (MPC) संरचना, आरक्षित अनुपात और तरलता प्रबंधन उपकरणों को समझें।",
+    "subjectId": "banking-awareness",
+    "subjectName": "Banking Awareness",
+    "topicIds": ["monetary-policy", "rbi", "banking-terms"],
+    "examTags": ["Banking", "SSC", "Other"],
+    "level": "Intermediate",
+    "modes": ["Beginner", "Revision"],
+    "languageMode": "Bilingual (English + Hindi)",
+    "access": "Free",
+    "status": "published",
+    "estimatedMinutes": 16,
+    "publishedAt": "2026-11-04",
+    "updatedAt": "2026-11-12",
+    "objectives_en": [
+      "Define statutory provisions governing the Monetary Policy Committee (Section 45ZB, RBI Act 1934).",
+      "Distinguish between Cash Reserve Ratio (CRR) and Statutory Liquidity Ratio (SLR).",
+      "Explain how changes in the policy Repo rate transmit into retail lending rates."
+    ],
+    "objectives_hi": [
+      "मौद्रिक नीति समिति को नियंत्रित करने वाले वैधानिक प्रावधानों (आरबीआई अधिनियम 1934 की धारा 45ZB) की परिभाषा।",
+      "नकद आरक्षित अनुपात (CRR) और वैधानिक तरलता अनुपात (SLR) में अंतर।",
+      "नीतिगत रेपो दर में बदलाव का खुदरा ऋण दरों पर प्रभाव।"
+    ],
+    "prerequisites_en": "Basic familiarity with commercial banking operations.",
+    "prerequisites_hi": "वाणिज्यिक बैंकिंग कार्यों की सामान्य जानकारी।",
+    "sections": [
+      {
+        "heading_en": "1. Legal Foundation & The MPC Structure",
+        "heading_hi": "1. कानूनी आधार और एमपीसी की संरचना",
+        "content_en": "• Statutory Section: Section 45ZB of the Reserve Bank of India Act, 1934 (inserted via Finance Act 2016).\n• Composition: 6 Members (3 from RBI including the Governor who acts as ex-officio Chairperson + 3 external members appointed by the Central Government).\n• Voting: Each member has one vote. In case of a tie, the RBI Governor has a casting vote (second vote).\n• Inflation Target: 4% Consumer Price Index (CPI) with an tolerance band of ±2% (i.e. 2% to 6%).",
+        "content_hi": "• वैधानिक धारा: भारतीय रिजर्व बैंक अधिनियम, 1934 की धारा 45ZB (वित्त अधिनियम 2016 द्वारा जोड़ी गई)।\n• संरचना: 6 सदस्य (3 आरबीआई से जिसमें गवर्नर पदेन अध्यक्ष होते हैं + 3 केंद्र सरकार द्वारा नियुक्त बाहरी सदस्य)।\n• मतदान: प्रत्येक सदस्य का एक वोट होता है। टाई होने की स्थिति में गवर्नर के पास निर्णायक (कास्टिंग) वोट होता है।\n• मुद्रास्फीति लक्ष्य: 4% उपभोक्ता मूल्य सूचकांक (CPI) जिसके साथ ±2% का सहनशीलता बैंड (2% से 6%) है।"
+      },
+      {
+        "heading_en": "2. CRR vs SLR: The Statutory Distinctions",
+        "heading_hi": "2. सीआरआर बनाम एसएलआर: वैधानिक अंतर",
+        "content_en": "• Cash Reserve Ratio (CRR):\n  - Governed by: Section 42(1) of the RBI Act, 1934.\n  - Maintained in: Pure CASH with the RBI.\n  - Interest earned by banks: ZERO percent.\n• Statutory Liquidity Ratio (SLR):\n  - Governed by: Section 24 of the Banking Regulation Act, 1949.\n  - Maintained in: Cash, Gold, or approved unencumbered Government Securities (G-Secs) kept with the banks themselves.\n  - Yield earned: Banks earn interest/coupon on the underlying government securities.",
+        "content_hi": "• नकद आरक्षित अनुपात (CRR):\n  - कानून: आरबीआई अधिनियम 1934 की धारा 42(1)।\n  - किस रूप में: आरबीआई के पास केवल नकद (CASH) में।\n  - बैंकों को मिलने वाला ब्याज: शून्य प्रतिशत।\n• वैधानिक तरलता अनुपात (SLR):\n  - कानून: बैंकिंग विनियमन अधिनियम 1949 की धारा 24।\n  - किस रूप में: नकद, सोना या अनुमोदित सरकारी प्रतिभूतियां (G-Secs) स्वयं बैंकों के पास।\n  - लाभ: बैंकों को सरकारी प्रतिभूतियों पर ब्याज मिलता है।"
+      }
+    ],
+    "questionIds": [],
+    "sources": "Official Reserve Bank of India (RBI) Monetary Policy Framework Documentation & Statutes",
+    "reviewMetadata": "Verified against RBI Act 1934 & Banking Regulation Act 1949 on 2026-11-10"
+  }
+]

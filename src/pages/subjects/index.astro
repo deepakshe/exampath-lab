@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import subjects from '../../data/subjects.json';
+---
+
+<BaseLayout
+  title="Subject Labs — ExamPath Lab"
+  description="Master English, Quantitative Aptitude, Reasoning Ability, General Awareness, Banking Awareness, and Computer Awareness."
+  breadcrumbs={[{ label: 'Subjects' }]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-3xl mb-10">
+      <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Curriculum Hub</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        Core Subject Laboratories
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        Each subject is engineered with its own visual language, cognitive tools, and pedagogy. Choose a subject to study foundational concepts, verified shortcuts, and active recall drills.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {subjects.map((sub) => (
+        <div class="editorial-card rounded-2xl p-6 bg-white border border-[#E2DDD1] flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-extrabold uppercase tracking-wider px-2.5 py-1 rounded" style={`background-color: ${sub.bg_color}; color: ${sub.color}; border: 1px solid ${sub.border_color};`}>
+                {sub.name_en}
+              </span>
+              <span class="text-xs font-bold text-[#536471]">
+                {sub.active_count} Active Guides
+              </span>
+            </div>
+
+            <!-- Subject Tagline -->
+            <div class="font-heading font-bold text-sm text-[#147D78]">
+              <span data-lang="en">{sub.tagline_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{sub.tagline_hi}</span>
+            </div>
+
+            <!-- Summary -->
+            <p class="text-xs text-[#536471] mt-2 leading-relaxed">
+              <span data-lang="en">{sub.summary_en}</span>
+              <span data-lang="hi" class="hidden font-hindi">{sub.summary_hi}</span>
+            </p>
+
+            <!-- Topics List -->
+            <div class="mt-4 pt-4 border-t border-[#E2DDD1]">
+              <div class="text-[11px] font-bold uppercase tracking-wider text-[#172633] mb-2">Syllabus Modules:</div>
+              <ul class="text-xs text-[#536471] space-y-1">
+                {sub.topics.map((t) => (
+                  <li class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full" style={`background-color: ${sub.color}`}></span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-[#E2DDD1]">
+            <a
+              href={`/subjects/${sub.slug}/`}
+              class="w-full py-2.5 rounded-lg bg-[#FAF8F3] hover:bg-[#E8F3F2] border border-[#E2DDD1] hover:border-[#147D78] text-[#172633] text-xs font-bold flex items-center justify-center gap-1 transition-colors"
+            >
+              Enter {sub.name_en} Lab →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

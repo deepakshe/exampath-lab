@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import InteractiveSearch from '../../components/InteractiveSearch.astro';
+---
+
+<BaseLayout
+  title="The Learning Library — Search & Filter | ExamPath Lab"
+  description="Search and filter across verified bilingual concepts, formulas, memory hooks, and shortcuts for Indian government exams."
+  breadcrumbs={[{ label: 'Library' }]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-3xl mb-8">
+      <span class="field-badge text-[#147D78] border-[#147D78]/20 bg-[#E8F3F2]">Complete Catalogue</span>
+      <h1 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#172633] mt-2">
+        The Learning Field Guide Library
+      </h1>
+      <p class="text-sm sm:text-base text-[#536471] mt-2 leading-relaxed">
+        Search by topic, shortcut keyword, or exam category. Every resource has been reviewed for mathematical correctness, bilingual accuracy, and exam relevance.
+      </p>
+    </div>
+
+    <!-- Interactive Search Component -->
+    <InteractiveSearch />
+  </div>
+</BaseLayout>
