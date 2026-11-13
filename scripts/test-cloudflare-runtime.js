@@ -47,19 +47,23 @@ async function waitForServer(url, timeoutMs = 25000) {
 async function runTests() {
   console.log(`Starting local Cloudflare Workers runtime (wrangler dev on port ${PORT})...`);
 
+  const startupLogs = [];
   const isWindows = process.platform === 'win32';
   const child = isWindows
     ? spawn('cmd.exe', ['/c', 'npx', 'wrangler', 'dev', '--port', String(PORT), '--ip', '127.0.0.1'], {
         cwd: rootDir,
+        env: { ...process.env, CI: 'true' },
         stdio: ['ignore', 'pipe', 'pipe'],
       })
     : spawn('npx', ['wrangler', 'dev', '--port', String(PORT), '--ip', '127.0.0.1'], {
         cwd: rootDir,
+        env: { ...process.env, CI: 'true' },
         stdio: ['ignore', 'pipe', 'pipe'],
       });
 
   child.stdout.on('data', (d) => {
     const text = d.toString();
+    startupLogs.push(text);
     if (text.includes('[wrangler:error]') || text.includes('ERROR')) {
       console.error(`[wrangler] ${text.trim()}`);
     }
@@ -67,6 +71,7 @@ async function runTests() {
 
   child.stderr.on('data', (d) => {
     const text = d.toString();
+    startupLogs.push(text);
     if (text.includes('Error')) {
       console.error(`[wrangler stderr] ${text.trim()}`);
     }
@@ -88,6 +93,9 @@ async function runTests() {
   try {
     const isReady = await waitForServer(BASE_URL);
     if (!isReady) {
+      if (startupLogs.length > 0) {
+        console.error('Captured Wrangler Startup Logs:\n' + startupLogs.join(''));
+      }
       throw new Error(`Wrangler server failed to become ready at ${BASE_URL} within timeout.`);
     }
     console.log('Cloudflare Workers runtime successfully started.\n');
