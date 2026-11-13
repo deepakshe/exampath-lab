@@ -10,7 +10,9 @@
     "preview": "astro preview",
     "validate": "node scripts/validate-build.js",
     "test:links": "node scripts/validate-build.js",
+    "test:cf": "node scripts/test-cloudflare-runtime.js",
     "test:e2e": "playwright test",
+    "test:all": "npm run validate && npm run test:cf && npm run test:e2e",
     "build:verify": "astro build && node scripts/validate-build.js"
   },
   "dependencies": {

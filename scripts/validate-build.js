@@ -112,10 +112,35 @@ for (const p of learningPaths) {
 }
 logPass('Learning Path resource references verified');
 
+// Missing Content Fields Validation
+console.log('\n2. Auditing Content Completeness & Mandatory Metadata Fields:');
+
+function validateRequiredFields(items, requiredFields, collectionName) {
+  let missingCount = 0;
+  for (const item of items) {
+    for (const field of requiredFields) {
+      if (item[field] === undefined || item[field] === null || item[field] === '') {
+        logError(`Item "${item.id || item.slug}" in ${collectionName} is missing required field: "${field}"`);
+        missingCount++;
+      }
+    }
+  }
+  if (missingCount === 0) {
+    logPass(`${collectionName}: all records contain mandatory fields [${requiredFields.join(', ')}]`);
+  }
+}
+
+validateRequiredFields(resources, ['id', 'slug', 'title_en', 'title_hi', 'summary_en', 'summary_hi', 'subjectId', 'sections', 'questionIds'], 'Resources');
+validateRequiredFields(questions, ['id', 'subjectId', 'prompt_en', 'prompt_hi', 'options', 'correctOptionId', 'beginner_solution_en', 'fast_solution_en'], 'Questions');
+validateRequiredFields(exams, ['id', 'slug', 'name_en', 'name_hi', 'summary_en', 'summary_hi', 'exam_list', 'key_focus_areas'], 'Exams');
+validateRequiredFields(subjects, ['id', 'slug', 'name_en', 'name_hi', 'tagline_en', 'tagline_hi', 'topics'], 'Subjects');
+validateRequiredFields(weeklyPacks, ['id', 'slug', 'title_en', 'title_hi', 'access', 'price_inr'], 'Weekly Packs');
+validateRequiredFields(flashcards, ['id', 'subject', 'term', 'pos', 'meaning_en', 'meaning_hi', 'mnemonic', 'example'], 'Flashcards');
+
 // ----------------------------------------------------
-// 2. SITEMAP & ROUTE RESOLUTION CHECK
+// 3. SITEMAP & ROUTE RESOLUTION CHECK
 // ----------------------------------------------------
-console.log('\n2. Verifying Sitemap Routes Against Static dist/ Directory:');
+console.log('\n3. Verifying Sitemap Routes Against Static dist/ Directory:');
 
 if (!fs.existsSync(distDir)) {
   logError(`Dist directory does not exist: ${distDir}. Run "npm run build" first.`);
@@ -151,9 +176,9 @@ if (!fs.existsSync(sitemapPath)) {
 }
 
 // ----------------------------------------------------
-// 3. INTERNAL LINK & ASSET RESOLUTION AUDIT
+// 4. INTERNAL LINK & ASSET RESOLUTION AUDIT
 // ----------------------------------------------------
-console.log('\n3. Auditing Internal Links, Stylesheets, Scripts & Assets in Rendered DOM:');
+console.log('\n4. Auditing Internal Links, Stylesheets, Scripts & Assets in Rendered DOM:');
 
 function getAllHtmlFiles(dir) {
   let results = [];
@@ -243,9 +268,60 @@ for (const htmlFile of allHtmlFiles) {
 logPass(`Checked ${totalLinksChecked} internal link/asset references (${externalLinksSkipped} external links skipped)`);
 
 // ----------------------------------------------------
-// 4. ESSENTIAL ASSETS EXISTENCE
+// 5. DOWNLOADABLE ASSETS & PDF INTEGRITY AUDIT
 // ----------------------------------------------------
-console.log('\n4. Checking Mandatory Configuration & Security Assets:');
+console.log('\n5. Auditing Public Downloadable Assets & PDF References:');
+
+let downloadableAssetsChecked = 0;
+for (const pack of weeklyPacks) {
+  if (pack.download_url) {
+    downloadableAssetsChecked++;
+    const cleanUrl = pack.download_url.replace(/^\//, '');
+    const assetFilePath = path.join(distDir, cleanUrl);
+    if (!fs.existsSync(assetFilePath)) {
+      logError(`Downloadable asset for pack "${pack.id}" missing in dist/: ${pack.download_url} -> ${assetFilePath}`);
+    } else {
+      const stats = fs.statSync(assetFilePath);
+      if (stats.size === 0) {
+        logError(`Downloadable asset is 0 bytes: ${pack.download_url}`);
+      } else {
+        logPass(`Verified downloadable asset for "${pack.title_en}" (${stats.size} bytes)`);
+      }
+    }
+  }
+}
+
+// PDF Reference Audit across entire generated HTML & JSON content
+let pdfReferencesFound = 0;
+const pdfRegex = /["']([^"']+\.pdf(?:\?[^"']*)?)["']/gi;
+
+for (const htmlFile of allHtmlFiles) {
+  const content = fs.readFileSync(htmlFile, 'utf-8');
+  let pdfMatch;
+  while ((pdfMatch = pdfRegex.exec(content)) !== null) {
+    pdfReferencesFound++;
+    let pdfTarget = pdfMatch[1].split('?')[0].trim();
+    if (pdfTarget.startsWith('http://') || pdfTarget.startsWith('https://')) {
+      logWarning(`External PDF link found (unverified locally): ${pdfTarget}`);
+    } else {
+      const localPdf = path.join(distDir, pdfTarget.replace(/^\//, ''));
+      if (!fs.existsSync(localPdf)) {
+        logError(`Broken local PDF reference in HTML: ${pdfTarget} -> ${localPdf}`);
+      } else {
+        logPass(`Verified local PDF reference: ${pdfTarget}`);
+      }
+    }
+  }
+}
+
+if (pdfReferencesFound === 0) {
+  logPass('PDF Reference Audit: 0 broken PDF links (website currently uses pure HTML printable format for zero-overhead)');
+}
+
+// ----------------------------------------------------
+// 6. ESSENTIAL ASSETS EXISTENCE
+// ----------------------------------------------------
+console.log('\n6. Checking Mandatory Configuration & Security Assets:');
 
 const essentialAssets = [
   '404.html',
