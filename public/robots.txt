@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://exampath-lab.pages.dev/sitemap.xml
+Sitemap: https://exampath-lab.deepaksheoran172.workers.dev/sitemap.xml
